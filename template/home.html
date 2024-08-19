@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{range .}}
+    <pre>
+            <img src="{{ .Image}}">      
+            {{ .Name}}
+            {{ range .Members}}
+                {{ .}}
+            {{end}}     
+            {{ .CreationDate}}
+            {{ .FirstAlbum}} 
+            <a href="{{ .Locations}}">Locations</a>   
+            <a href="{{ .ConcertDates}}">dates</a>
+            <a href="{{ .Relations}}">Relations</a>
+        </pre>
+    {{end}}
+</html>
