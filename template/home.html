@@ -1,17 +1,18 @@
+{{ define "home" }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Groupie-Tracker</title>
 </head>
 <body>
-    {{range .}}
+    {{ range .}}
     <pre>
             <img src="{{ .Image}}">      
             {{ .Name}}
             {{ range .Members}}
-                {{ .}}
+               <li>{{ .}}</li>
             {{end}}     
             {{ .CreationDate}}
             {{ .FirstAlbum}} 
@@ -21,3 +22,4 @@
         </pre>
     {{end}}
 </html>
+{{ end }}
