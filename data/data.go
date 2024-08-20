@@ -33,7 +33,7 @@ type Dates struct {
 }
 
 type Indexxxx struct {
-	Id int `json:"id"`
+	Id             int                 `json:"id"`
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
