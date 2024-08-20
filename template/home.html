@@ -1,25 +1,25 @@
 {{ define "home" }}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groupie-Tracker</title>
-</head>
+<html>
+
 <body>
-    {{ range .}}
-    <pre>
-            <img src="{{ .Image}}">      
-            <a href="/template/artist.html">{{.Name}}</a>   
-            {{ range .Members}}
-               <li>{{ .}}</li>
-            {{end}}     
-            {{ .CreationDate}}
-            {{ .FirstAlbum}} 
-            <a href="{{ .Locations}}">Locations</a>   
-            <a href="{{ .ConcertDates}}">dates</a>
-            <a href="{{ .Relations}}">Relations</a>
-        </pre>
-    {{end}}
+    <main>
+        {{ range .}}
+        <pre>
+            <div >
+                <a href="/artist?id={{.Id}}">
+                <img src="{{ .Image}}">      
+                {{.Name}} 
+                {{ .CreationDate}}
+                {{ .FirstAlbum}} 
+                <a href="{{ .Locations}}">Locations</a>   
+                <a href="{{ .ConcertDates}}">dates</a>
+                <a href="{{ .Relations}}">Relations</a>
+            </div>
+                </pre>
+        {{end}}
+    </main>
+
+</body>
+
 </html>
 {{ end }}
