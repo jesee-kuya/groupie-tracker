@@ -1,4 +1,6 @@
 {{ if eq "home" .Title}}
-    {{template "home"}}
+    {{ template "home" .Data }}
 {{ else if eq "location" .Title}}
-    {{ template "location" }}
+    {{ template "location" .Data }}
+{{end}}
+{{ template "footer"}}
