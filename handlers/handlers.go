@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 
 	groupie "groupie/data"
@@ -27,7 +28,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	data.Title = "home"
 	data.Data = artist
 
-	Temp.Execute(w, data)
+	Temp.ExecuteTemplate(w, "base.html", data)
 }
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
@@ -36,10 +37,23 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if r.Method != "GET" {
+		fmt.Println(r.Method)
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
+
+	strId := r.URL.Query().Get("id")
+	id, err := strconv.Atoi(strId)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
 	artist := groupie.FetchArtist()
 	var data Info
 	data.Title = "Artist"
-	data.Data = artist
+	data.Data = artist[id-1]
 
-	Temp.Execute(w, data)
+	Temp.ExecuteTemplate(w, "base.html", data)
 }
