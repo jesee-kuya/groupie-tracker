@@ -1,29 +1,20 @@
-{{ define "Artists" }}
-<!DOCTYPE html>
+{{ define "Artist" }}
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artists</title>
-</head>
-
-<body>
+<body action="/artist">
     <div>
         <pre>
-        {{.Image}} 
-        {{.Name}} 
-        {{range .Members}}
-        <li> {{.}} </li> 
-        {{.CreationDate}}
-        {{.FirstAlbum}} 
-        {{.Locations}} 
-        {{.ConcertDates}} 
-        {{.Relations}}
-        </pre>>
-
+            <img src="{{.Image}}">
+            {{.Name}} 
+            {{range .Members}}
+            <li> {{.}} </li> 
+            {{end}}
+            {{.CreationDate}}
+            {{.FirstAlbum}} 
+            {{.Locations}} 
+            {{.ConcertDates}} 
+            {{.Relations}}
+            </pre>
     </div>
 </body>
-
 </html>
 {{ end }}
