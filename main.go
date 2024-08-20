@@ -11,5 +11,6 @@ func main() {
 		Addr: "127.0.0.1:8080",
 	}
 	http.HandleFunc("/", handle.HomeHandler)
+	http.HandleFunc("/artist", handle.ArtistHandler)
 	server.ListenAndServe()
 }
