@@ -10,7 +10,7 @@
     {{ range .}}
     <pre>
             <img src="{{ .Image}}">      
-            {{ .Name}}
+            <a href="/template/artist.html">{{.Name}}</a>   
             {{ range .Members}}
                <li>{{ .}}</li>
             {{end}}     
