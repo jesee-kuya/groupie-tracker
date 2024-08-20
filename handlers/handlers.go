@@ -30,16 +30,16 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	Temp.Execute(w, data)
 }
 
-func LocationHandler(w http.ResponseWriter, r *http.Request) {
+func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	location := groupie.FetchLocation()
+	artist := groupie.FetchArtist()
 	var data Info
-	data.Title = "location"
-	data.Data = location
+	data.Title = "Artist"
+	data.Data = artist
 
 	Temp.Execute(w, data)
 }
