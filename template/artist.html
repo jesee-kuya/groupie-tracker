@@ -1,0 +1,29 @@
+{{ define "Artists" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists</title>
+</head>
+
+<body>
+    <div>
+        <pre>
+        {{.Image}} 
+        {{.Name}} 
+        {{range .Members}}
+        <li> {{.}} </li> 
+        {{.CreationDate}}
+        {{.FirstAlbum}} 
+        {{.Locations}} 
+        {{.ConcertDates}} 
+        {{.Relations}}
+        </pre>>
+
+    </div>
+</body>
+
+</html>
+{{ end }}
