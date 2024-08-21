@@ -3,20 +3,23 @@
 
 <body>
     <main name="index">
-        {{ range .}}
-        <pre>
-            <div >
-                <a href="/artist?id={{.Id}}">
-                <img src="{{ .Image}}">      
-                {{.Name}} 
-                {{ .CreationDate}}
-                {{ .FirstAlbum}} 
-                <a href="{{ .Locations}}">Locations</a>   
-                <a href="{{ .ConcertDates}}">dates</a>
-                <a href="{{ .Relations}}">Relations</a>
-            </div>
+        <div class="container">
+            {{ range .}}
+            <div class="artists">
+                <pre>
+                    <a href="/artist?id={{.Id}}"> <img src="{{ .Image}}"></a>
+                        {{.Name}}
+                        {{ .CreationDate}}
+                        {{ .FirstAlbum}}
+                            <a href="{{ .Locations}}">Locations</a>
+                            <a href="{{ .ConcertDates}}">dates</a>
+                            <a href="{{ .Relations}}">Relations</a>
+
                 </pre>
-        {{end}}
+            </div>
+            {{end}}
+
+        </div>
     </main>
 
 </body>
