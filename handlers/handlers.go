@@ -17,14 +17,17 @@ type Info struct {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	var data Info
 	if err != nil {
 		fmt.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
+		data.Title = "error"
+		data.Data = "500 Internal Server Error"
+		Temp.ExecuteTemplate(w, "base.html", data)
 		return
 	}
 
 	artist := groupie.FetchArtist()
-	var data Info
 	data.Title = "home"
 	data.Data = artist
 
@@ -32,8 +35,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
+	var data Info
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		data.Title = "error"
+		data.Data = "500 Internal Server Error"
+		Temp.ExecuteTemplate(w, "base.html", data)
 		return
 	}
 
@@ -51,7 +58,6 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	artist := groupie.FetchArtist()
-	var data Info
 	data.Title = "Artist"
 	data.Data = artist[id-1]
 
