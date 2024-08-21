@@ -3,5 +3,7 @@
     {{ template "home" .Data }}
 {{ else if eq "Artist" .Title}}
     {{ template "Artist" .Data }}
+{{ else if eq "error" .Title}}
+    {{ template "error" .Data }}
 {{end}}
 {{ template "footer"}}
