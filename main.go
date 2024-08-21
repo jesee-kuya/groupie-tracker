@@ -12,7 +12,6 @@ func main() {
 	}
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	http.HandleFunc("/", handle.HomeHandler)
-	http.HandleFunc("/artist", handle.ArtistHandler)
+	http.HandleFunc("/", handle.Handler)
 	server.ListenAndServe()
 }
