@@ -16,14 +16,33 @@ type Info struct {
 	Data  interface{}
 }
 
+func Handler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/" || r.URL.Path == "/home" {
+		if r.Method == "GET" {
+			HomeHandler(w, r)
+			return
+		} else {
+			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+			return
+		}
+	} else if r.URL.Path == "/artist" {
+		if r.Method == "GET" {
+			ArtistHandler(w, r)
+			return
+		} else {
+			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+			return
+		}
+	} else {
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
+		return
+	}
+}
+
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
 	if err != nil {
-		fmt.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
-		data.Title = "error"
-		data.Data = "500 Internal Server Error"
-		Temp.ExecuteTemplate(w, "base.html", data)
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
 	}
 
@@ -37,29 +56,37 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		data.Title = "error"
-		data.Data = "500 Internal Server Error"
-		Temp.ExecuteTemplate(w, "base.html", data)
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
 	}
 
 	if r.Method != "GET" {
-		fmt.Println(r.Method)
-		w.WriteHeader(http.StatusMethodNotAllowed)
+		ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		return
 	}
 
 	strId := r.URL.Query().Get("id")
 	id, err := strconv.Atoi(strId)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
 	}
 
 	artist := groupie.FetchArtist()
+	if id > len(artist) {
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
+		return
+	}
 	data.Title = "Artist"
 	data.Data = artist[id-1]
 
+	Temp.ExecuteTemplate(w, "base.html", data)
+}
+
+func ErrorPage(w http.ResponseWriter, r *http.Request, code int, msg string) {
+	var data Info
+	data.Title = "error"
+	data.Data = fmt.Sprintf("Error: %v %v.", code, msg)
+	w.WriteHeader(code)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }
