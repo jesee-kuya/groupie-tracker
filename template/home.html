@@ -5,18 +5,18 @@
     <main name="index">
         <div class="container">
             {{ range .}}
-            <div class="artists">
-                <pre>
+            <pre>
+                <div class="artists">
                     <a href="/artist?id={{.Id}}"> <img src="{{ .Image}}"></a>
                         {{.Name}}
                         {{ .CreationDate}}
                         {{ .FirstAlbum}}
-                            <a href="{{ .Locations}}">Locations</a>
-                            <a href="{{ .ConcertDates}}">dates</a>
-                            <a href="{{ .Relations}}">Relations</a>
+                        <a href="{{ .Locations}}">Locations</a>
+                        <a href="{{ .ConcertDates}}">dates</a>
+                        <a href="{{ .Relations}}">Relations</a>
 
+                    </div>
                 </pre>
-            </div>
             {{end}}
 
         </div>
