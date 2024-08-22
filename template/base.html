@@ -7,5 +7,7 @@
     {{ template "error" .Data }}
 {{ else if eq "location" .Title}}
     {{ template "location" .Data}}
+{{ else if eq "dates" .Title}}
+    {{ template "dates" .Data}}
 {{end}}
 {{ template "footer"}}
