@@ -2,83 +2,79 @@ package groupie
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
-	"os"
 )
 
-func FetchArtist() (artist []Artist) {
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+func Response(str string) (*http.Response, error) {
+	url := "https://groupietrackers.herokuapp.com/api/" + str
 
 	response, err := http.Get(url)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return nil, err
+	}
+	return response, nil
+}
+
+func FetchArtist() ([]Artist, error) {
+	var artist []Artist
+	response, err := Response("artists")
+	if err != nil {
+		return nil, err
 	}
 	defer response.Body.Close()
 
 	decode := json.NewDecoder(response.Body)
 	jsErr := decode.Decode(&artist)
 	if jsErr != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return nil, jsErr
 	}
-	return
+	return artist, nil
 }
 
-func FetchLocation() (locations Location) {
-	url := "https://groupietrackers.herokuapp.com/api/locations"
-
-	response, err := http.Get(url)
+func FetchLocation() (Location, error) {
+	var locations Location
+	response, err := Response("locations")
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return locations, err
 	}
 	defer response.Body.Close()
 
 	decode := json.NewDecoder(response.Body)
 	jsErr := decode.Decode(&locations)
 	if jsErr != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return locations, jsErr
 	}
-	return
+	return locations, nil
 }
 
-func FetchDates() (dates Dates) {
-	url := "https://groupietrackers.herokuapp.com/api/dates"
-
-	response, err := http.Get(url)
+func FetchDates() (Dates, error) {
+	var dates Dates
+	response, err := Response("dates")
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return dates, err
 	}
 	defer response.Body.Close()
 
 	decode := json.NewDecoder(response.Body)
 	jsErr := decode.Decode(&dates)
 	if jsErr != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return dates, jsErr
 	}
-	return
+	return dates, nil
 }
 
-func FetchRelation() (relation Relations) {
-	url := "https://groupietrackers.herokuapp.com/api/relation"
-
-	response, err := http.Get(url)
+func FetchRelation() (Relations, error) {
+	var relation Relations
+	response, err := Response("relation")
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return relation, err
 	}
 	defer response.Body.Close()
 
 	decode := json.NewDecoder(response.Body)
 	jsErr := decode.Decode(&relation)
 	if jsErr != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return relation, jsErr
 	}
-	return
+	return relation, nil
 }
