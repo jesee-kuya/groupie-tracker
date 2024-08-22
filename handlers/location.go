@@ -33,5 +33,6 @@ func LocationtHandler(w http.ResponseWriter, r *http.Request) {
 	data.Title = "location"
 	data.Data = location.Index[id-1]
 
+	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }

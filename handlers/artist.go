@@ -33,5 +33,6 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	data.Title = "Artist"
 	data.Data = artist[id-1]
 
+	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }

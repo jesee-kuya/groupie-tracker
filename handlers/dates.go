@@ -33,5 +33,6 @@ func DatesHandler(w http.ResponseWriter, r *http.Request) {
 	data.Title = "dates"
 	data.Data = dates.Index[id-1]
 
+	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }

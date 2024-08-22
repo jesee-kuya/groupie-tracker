@@ -33,5 +33,6 @@ func RelationsHandler(w http.ResponseWriter, r *http.Request) {
 	data.Title = "relations"
 	data.Data = relations.Index[id-1]
 
+	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }

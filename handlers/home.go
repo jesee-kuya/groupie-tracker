@@ -21,5 +21,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	data.Title = "home"
 	data.Data = artist
 
+	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }
