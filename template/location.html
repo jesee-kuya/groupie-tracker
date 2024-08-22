@@ -1,0 +1,10 @@
+{{define "location"}}
+<html>
+    <body>
+        {{range .Locations}}
+        <li>{{.}}</li>
+        {{end}}
+        <a href="{{ .ConcertDates}}">dates</a>
+    </body>
+</html>
+{{end}}
