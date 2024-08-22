@@ -5,5 +5,7 @@
     {{ template "Artist" .Data }}
 {{ else if eq "error" .Title}}
     {{ template "error" .Data }}
+{{ else if eq "location" .Title}}
+    {{ template "location" .Data}}
 {{end}}
 {{ template "footer"}}
