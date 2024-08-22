@@ -21,7 +21,11 @@ func LocationtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	location := groupie.FetchLocation()
+	location, err := groupie.FetchLocation()
+	if err != nil {
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		return
+	}
 	if id > len(location.Index) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return

@@ -21,7 +21,11 @@ func DatesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	dates := groupie.FetchDates()
+	dates, err := groupie.FetchDates()
+	if err != nil {
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		return
+	}
 	if id > len(dates.Index) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return

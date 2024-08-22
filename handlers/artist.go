@@ -21,7 +21,11 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	artist := groupie.FetchArtist()
+	artist, err := groupie.FetchArtist()
+	if err != nil {
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		return
+	}
 	if id > len(artist) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return

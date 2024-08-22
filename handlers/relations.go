@@ -21,7 +21,11 @@ func RelationsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	relations := groupie.FetchRelation()
+	relations, err := groupie.FetchRelation()
+	if err != nil {
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		return
+	}
 	if id > len(relations.Index) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return

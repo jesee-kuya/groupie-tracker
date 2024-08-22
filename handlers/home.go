@@ -13,7 +13,11 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	artist := groupie.FetchArtist()
+	artist, err := groupie.FetchArtist()
+	if err != nil {
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		return
+	}
 	data.Title = "home"
 	data.Data = artist
 
