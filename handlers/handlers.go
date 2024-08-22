@@ -33,6 +33,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 			return
 		}
+	} else if r.URL.Path == "/location" {
+		if r.Method == "GET" {
+			LocationtHandler(w, r)
+			return
+		} else {
+			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+			return
+		}
 	} else {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
@@ -60,15 +68,10 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if r.Method != "GET" {
-		ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
-		return
-	}
-
 	strId := r.URL.Query().Get("id")
 	id, err := strconv.Atoi(strId)
 	if err != nil {
-		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
 
@@ -88,5 +91,30 @@ func ErrorPage(w http.ResponseWriter, r *http.Request, code int, msg string) {
 	data.Title = "error"
 	data.Data = fmt.Sprintf("Error: %v %v.", code, msg)
 	w.WriteHeader(code)
+	Temp.ExecuteTemplate(w, "base.html", data)
+}
+
+func LocationtHandler(w http.ResponseWriter, r *http.Request) {
+	var data Info
+	if err != nil {
+		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+		return
+	}
+
+	strId := r.URL.Query().Get("id")
+	id, err := strconv.Atoi(strId)
+	if err != nil {
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
+		return
+	}
+
+	location := groupie.FetchLocation()
+	if id > len(location.Index) {
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
+		return
+	}
+	data.Title = "location"
+	data.Data = location.Index[id-1]
+
 	Temp.ExecuteTemplate(w, "base.html", data)
 }
