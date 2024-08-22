@@ -17,9 +17,9 @@
                 </tr>
                 <tr><td>{{.CreationDate}}</td></tr>
                 <tr> <td>{{.FirstAlbum}}</td></tr>
-                <tr><td> <a href="{{ .Locations}}">Locations</a></td></tr>
-                <tr> <td><a href="{{ .ConcertDates}}">dates</a></td></tr>
-                <tr><td> <a href="{{ .Relations}}">Relations</a></td></tr>
+                <tr><td> <a href="/location?id={{.Id}}">Locations</a></td></tr>
+                <tr> <td><a href="/dates?id={{.Id}}">dates</a></td></tr>
+                <tr><td> <a href="/relations?id={{.Id}}">Relations</a></td></tr>
             </table>
             </pre>
     </div>

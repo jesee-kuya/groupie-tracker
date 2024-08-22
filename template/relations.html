@@ -1,0 +1,22 @@
+{{define "relations"}}
+<html>
+
+<body>
+    <table>
+        {{if .}}
+        {{range $l, $d := .DatesLocations}}
+        <li>{{ $l }}</li>
+        {{range $d}}
+        <li>
+            <ul>{{.}}</ul>
+        </li>
+        {{end}}
+        {{end}}
+        {{else}}
+        <p>No relations found</p>
+        {{end}}
+    </table>
+</body>
+
+</html>
+{{end}}
