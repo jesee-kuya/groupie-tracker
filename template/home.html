@@ -1,28 +1,33 @@
 {{ define "home" }}
 <html>
-
+<head>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
 <body>
+    <!-- New hero section with the concert image -->
+    <section class="hero">
+        <img src="/static/images/Groupie1Cropd.jpg" alt="Concert crowd with spectacular light show" class="hero-image">
+        <div class="hero-content">
+            <h1>Welcome to Groupie Trackers</h1>
+        </div>
+    </section>
     <main name="index">
-        <div class="container">
-            {{ range .}}
-            <pre>
-                <div class="artists">
-                    <a href="/artist?id={{.Id}}"> <img src="{{ .Image}}"></a>
-                        {{.Name}}
-                        {{ .CreationDate}}
-                        {{ .FirstAlbum}}
-                        <a href="/location?id={{.Id}}">Locations</a>
-                        <a href="/dates?id={{.Id}}">dates</a>
-                        <a href="/relations?id={{.Id}}">Relations</a>
-
-                    </div>
-                </pre>
-            {{end}}
-
+        <div class="artists-grid">
+            {{ range . }}
+            <div class="artist-card">
+                <a href="/artist?id={{.Id}}">
+                    <img src="{{ .Image }}" alt="{{ .Name }}">
+                </a>
+                <h3>{{ .Name }}</h3>
+                <p>Creation Date: {{ .CreationDate }}</p>
+                <p>First Album: {{ .FirstAlbum }}</p>
+                <a href="/location?id={{.Id}}">Locations</a>
+                <a href="/dates?id={{.Id}}">Dates</a>
+                <a href="/relations?id={{.Id}}">Relations</a>
+            </div>
+            {{ end }}
         </div>
     </main>
-
 </body>
-
 </html>
 {{ end }}
