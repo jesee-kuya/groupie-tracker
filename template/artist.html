@@ -1,28 +1,41 @@
 {{ define "Artist" }}
 <html lang="en">
-    <link rel="stylesheet" href="./static/style.css">
+<link rel="stylesheet" href="./static/style.css">
+
 <body action="/artist">
     <div class="info">
         <pre>
             <div class="picture">
-                <img src="{{.Image}}">
+                <img src="{{.Artist.Image}}">
 
             </div>
             <table>
-                <tr><td>{{.Name}}</td></tr>
+                <tr><td>{{.Artist.Name}}</td></tr>
                 <tr>
-                    {{range .Members}}
+                    {{range .Artist.Members}}
                     <td><li> {{.}} </li> </td>   
                     {{end}}
                 </tr>
-                <tr><td>{{.CreationDate}}</td></tr>
-                <tr> <td>{{.FirstAlbum}}</td></tr>
-                <tr><td> <a href="/location?id={{.Id}}">Locations</a></td></tr>
-                <tr> <td><a href="/dates?id={{.Id}}">dates</a></td></tr>
-                <tr><td> <a href="/relations?id={{.Id}}">Relations</a></td></tr>
+                <tr><td>{{.Artist.CreationDate}}</td></tr>
+                <tr> <td>{{.Artist.FirstAlbum}}</td></tr>
+            </table>
+            <table>
+                {{if .}}
+                {{range $l, $d := .Relation.DatesLocations}}
+                <li>{{ $l }}</li>
+                {{range $d}}
+                <li>
+                    <ul>{{.}}</ul>
+                </li>
+                {{end}}
+                {{end}}
+                {{else}}
+                <p>No relations found</p>
+                {{end}}
             </table>
             </pre>
     </div>
 </body>
+
 </html>
 {{ end }}
