@@ -201,23 +201,66 @@ main {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    margin-bottom: 1em;
 }
 
 /* Styling for card titles */
 .artist-card h3 {
     margin: 0.5em 0;
+    color: #333;
 }
 
-/* Styling for card links */
+/* Styling for card paragraphs */
+.artist-card p {
+    margin: 0.5em 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Styling for card links (locations, dates, relations) */
 .artist-card a {
+    display: inline-block;
+    margin: 0.5em 0.3em;
+    padding: 0.5em 1em;
     text-decoration: none;
-    color: #007bff;
+    color: #fff;
+    background-color: #fff;
+    border-radius: 4px;
     font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* Hover effect for card links */
 .artist-card a:hover {
-    color: #0056b3;
+    background-color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Specific colors for each link type */
+.artist-card a[href*="location"] {
+    background-color: #28a745;
+}
+
+.artist-card a[href*="location"]:hover {
+    background-color: #218838;
+}
+
+.artist-card a[href*="dates"] {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.artist-card a[href*="dates"]:hover {
+    background-color: #e0a800;
+}
+
+.artist-card a[href*="relations"] {
+    background-color: #dc3545;
+}
+
+.artist-card a[href*="relations"]:hover {
+    background-color: #c82333;
 }
 
 /* Concert Details Table Styling */
