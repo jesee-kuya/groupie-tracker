@@ -281,17 +281,6 @@ main {
     }
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-}
-
-footer p {
-    margin: 0;
-}
 
 .hero {
     position: relative;
@@ -321,3 +310,67 @@ footer p {
 }
 
 	
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer content styling */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Typing effect container */
+.typing-container {
+    margin-bottom: 10px; /* Space between typing effect and copyright */
+    position: relative;
+    white-space: nowrap;
+}
+
+/* Typing effect styling */
+.typing-effect {
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid #fff;
+    animation: typing 12s steps(50, end) infinite, blink 0.75s step-end infinite;
+    color: #fff; /* Ensure text color is white */
+    max-width: 100%; /* Ensure it doesn’t exceed the container width */
+}
+
+@keyframes typing {
+    0%, 100% { width: 0; }
+    25% { width: 10ch; } /* Adjust according to text length */
+    50% { width: 20ch; } /* Adjust according to text length */
+    75% { width: 30ch; } /* Adjust according to text length */
+    100% { width: 40ch; } /* Adjust according to text length */
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Copyright styling */
+footer p {
+    margin: 0;
+    font-size: 14px; /* Adjust size as needed */
+}
