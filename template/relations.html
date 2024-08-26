@@ -2,9 +2,11 @@
 <html>
 
 <body>
+    {{.Details.Name}}
+    <img src="{{ .Details.Image }}" alt="{{ .Details.Name }}">
     <table>
-        {{if .}}
-        {{range $l, $d := .DatesLocations}}
+        {{if .Rel}}
+        {{range $l, $d := .Rel.DatesLocations}}
         <li>{{ $l }}</li>
         {{range $d}}
         <li>
