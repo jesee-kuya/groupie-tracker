@@ -1,40 +1,54 @@
 {{ define "Artist" }}
 <html lang="en">
-<link rel="stylesheet" href="./static/style.css">
 
 <body action="/artist">
-    <div class="info">
-        <pre>
-            <div class="picture">
-                <img src="{{.Artist.Image}}">
-
-            </div>
-            <table>
-                <tr><td>{{.Artist.Name}}</td></tr>
-                <tr>
+    <header>
+        <h1>{{.Artist.Name}}</h1>
+    </header>
+    <main>
+        <section class="artist-info">
+            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/favicon32.png';">
+            <p>Year Started: {{.Artist.CreationDate}}</p>
+            <p>First Album: {{.Artist.FirstAlbum}}</p>
+            
+            <h2>Members:</h2>
+            <ul>
+                {{if .Artist.Members}}
                     {{range .Artist.Members}}
-                    <td><li> {{.}} </li> </td>   
+                    <li>{{.}}</li>
                     {{end}}
-                </tr>
-                <tr><td>{{.Artist.CreationDate}}</td></tr>
-                <tr> <td>{{.Artist.FirstAlbum}}</td></tr>
-            </table>
-            <table>
-                {{if .}}
-                {{range $l, $d := .Relation.DatesLocations}}
-                <li>{{ $l }}</li>
-                {{range $d}}
-                <li>
-                    <ul>{{.}}</ul>
-                </li>
-                {{end}}
-                {{end}}
                 {{else}}
-                <p>No relations found</p>
+                    <li>No members available.</li>
                 {{end}}
-            </table>
-            </pre>
-    </div>
+            </ul>            
+
+            <h2>Concert Locations and Dates:</h2>
+            <section class="concert-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range $location, $dates := .Relation.DatesLocations}}
+                            {{range $dates}}
+                            <tr>
+                                <td>{{ $location }}</td>
+                                <td>{{.}}</td>
+                            </tr>
+                            {{end}}
+                        {{else}}
+                        <tr>
+                            <td colspan="2">No concert information available.</td>
+                        </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </main>
 </body>
 
 </html>
