@@ -7,8 +7,14 @@ import (
 	groupie "groupie/data"
 )
 
+type RelData struct {
+	Details groupie.Artist
+	Rel     groupie.Indexxxx
+}
+
 func RelationsHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
+	var detail RelData
 	if err != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
@@ -22,7 +28,13 @@ func RelationsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	relations, err := groupie.FetchRelation()
-	if err != nil {
+	artist, err1 := groupie.FetchArtist()
+
+	if id > len(artist) {
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
+		return
+	}
+	if err != nil || err1 != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
 	}
@@ -30,8 +42,10 @@ func RelationsHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
+	detail.Details = artist[id-1]
+	detail.Rel = relations.Index[id-1]
 	data.Title = "relations"
-	data.Data = relations.Index[id-1]
+	data.Data = detail
 
 	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)

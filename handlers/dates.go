@@ -7,8 +7,14 @@ import (
 	groupie "groupie/data"
 )
 
+type DateData struct {
+	Details groupie.Artist
+	Dt      groupie.Indexxx
+}
+
 func DatesHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
+	var details DateData
 	if err != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
@@ -22,7 +28,9 @@ func DatesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dates, err := groupie.FetchDates()
-	if err != nil {
+	artist, err1 := groupie.FetchArtist()
+
+	if err != nil || err1 != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
 	}
@@ -30,8 +38,10 @@ func DatesHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
+	details.Details = artist[id-1]
+	details.Dt = dates.Index[id-1]
 	data.Title = "dates"
-	data.Data = dates.Index[id-1]
+	data.Data = details
 
 	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
