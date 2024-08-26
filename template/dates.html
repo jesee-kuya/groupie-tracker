@@ -1,9 +1,11 @@
 {{define "dates"}}
 <html>
-{{ .Details.Name }}
-<img src="{{ .Details.Image }}" alt="{{ .Details.Name }}">
-
+    <header>
+        <h1>{{.Details.Name}}</h1>
+    </header>
 <body>
+    <img src="{{ .Details.Image }}" alt="{{ .Details.Name }}">
+    <h2>Concert Dates</h2>
     {{range .Dt.Dates}}
     <li>{{.}}</li>
     {{end}}
