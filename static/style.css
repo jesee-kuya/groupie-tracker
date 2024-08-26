@@ -132,7 +132,7 @@ main {
 
 /* Styling for lists within artist-info */
 .artist-info ul {
-    list-style-position: inside;
+    list-style-type: none;
     padding: 0;
     margin: 0 auto;
     max-width: 800px;
@@ -416,4 +416,48 @@ footer {
 footer p {
     margin: 0;
     font-size: 14px; /* Adjust size as needed */
+}
+
+/* Centered content styling */
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em;
+    text-align: center;
+}
+
+.concert-info img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.concert-info h2 {
+    margin-top: 1em;
+}
+
+.concert-info ul {
+    list-style-position: inside;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.concert-info li {
+    text-align: center;
+    font-size: 16px;
+    margin: 0.5em 0;
+}
+
+.no-bullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.no-bullets li {
+    padding-left: 0; /* Remove any left padding that might be causing the asterisks */
 }
