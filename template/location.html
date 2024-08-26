@@ -1,12 +1,14 @@
 {{define "location"}}
 <html>
-    {{.Details.Name}}
-    <img src="{{ .Details.Image }}" alt="{{ .Details.Name }}">
+    <header>
+        <h1>{{.Details.Name}}</h1>
+    </header>    
     <body>
+        <img src="{{ .Details.Image }}" alt="{{ .Details.Name }}">
+        <h2>Concert Locations</h2>
         {{range .Loc.Locations}}
         <li>{{.}}</li>
-        {{end}}
-        <a href="{{ .ConcertDates}}">dates</a>
+        {{end}}       
     </body>
 </html>
 {{end}}
