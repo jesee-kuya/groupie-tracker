@@ -30,7 +30,7 @@ func RelationsHandler(w http.ResponseWriter, r *http.Request) {
 	relations, err := groupie.FetchRelation()
 	artist, err1 := groupie.FetchArtist()
 
-	if id >= len(artist) || id >= len(relations.Index) {
+	if id > len(artist) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
