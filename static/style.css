@@ -3,6 +3,9 @@ body {
     background-image: linear-gradient(#fdbb2d, #b21f1f);
     margin: 0;
     font-family: Arial, sans-serif;
+    min-height: 100vh; /* Ensure minimum height of 100% of the viewport */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Navbar styling */
@@ -122,6 +125,7 @@ header {
 main {
     padding: 2em;
     text-align: center;
+    flex: 1 0 auto; /* This will make the main content grow to push the footer down */
 }
 
 /* Centered section styling */
@@ -370,9 +374,7 @@ footer {
     color: white;
     text-align: center;
     padding: 20px;
-    margin-top: auto;
-    position: relative;
-    overflow: hidden;
+    flex-shrink: 0; /* Prevents the footer from shrinking */
 }
 
 /* Footer content styling */
