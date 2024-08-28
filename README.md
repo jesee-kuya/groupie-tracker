@@ -42,5 +42,15 @@ localhost:8080
 
 - Pull Requests: When ready, submit a pull request to propose merging your changes back into the main repository.
 
+
+## Authors
+This project was done by:
+
+[@jkuya](https://github.com/jesee-kuya) 
+
+[@josotieno](https://github.com/josephokumu)
+
+[@weakinyi](https://github.com/Wendy-Tabitha)
+
 ## LICENSE
 This project is licensed under the terms of the [MIT License](./LICENSE).
