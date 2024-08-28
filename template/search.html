@@ -1,0 +1,21 @@
+{{ define "search" }}
+<html>
+
+<body>
+    {{range .}}
+    <div class="artist-card">
+        <a href="/artist?id={{.Id}}">
+            <img src="{{ .Image }}" alt="{{ .Name }}">
+        </a>
+        <h3>{{ .Name }}</h3>
+        <p>Creation Date: {{ .CreationDate }}</p>
+        <p>First Album: {{ .FirstAlbum }}</p>
+        <a href="/location?id={{.Id}}">Locations</a>
+        <a href="/dates?id={{.Id}}">Dates</a>
+        <a href="/relations?id={{.Id}}">Relations</a>
+    </div>
+    {{end}}
+</body>
+
+</html>
+{{end}}
