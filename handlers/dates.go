@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"strconv"
 
 	groupie "groupie/data"
 )
@@ -15,31 +14,14 @@ type DateData struct {
 func DatesHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
 	var details DateData
-	if err != nil {
-		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
+
+	id := GetId(w, r)
+	if id <= 0 {
 		return
 	}
 
-	strId := r.URL.Query().Get("id")
-	id, err := strconv.Atoi(strId)
-	if err != nil {
-		ErrorPage(w, r, http.StatusNotFound, "Not found")
-		return
-	}
-
-	dates, err := groupie.FetchDates()
-	artist, err1 := groupie.FetchArtist()
-
-	if err != nil || err1 != nil {
-		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
-		return
-	}
-	if id > len(dates.Index) {
-		ErrorPage(w, r, http.StatusNotFound, "Not found")
-		return
-	}
-	details.Details = artist[id-1]
-	details.Dt = dates.Index[id-1]
+	details.Details = Artiste[id-1]
+	details.Dt = Tarehe.Index[id-1]
 	data.Title = "dates"
 	data.Data = details
 
