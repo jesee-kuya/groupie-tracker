@@ -3,9 +3,6 @@ body {
     background-image: linear-gradient(#fdbb2d, #b21f1f);
     margin: 0;
     font-family: Arial, sans-serif;
-    min-height: 100vh; /* Ensure minimum height of 100% of the viewport */
-    display: flex;
-    flex-direction: column;
 }
 
 /* Navbar styling */
@@ -125,7 +122,6 @@ header {
 main {
     padding: 2em;
     text-align: center;
-    flex: 1 0 auto; /* This will make the main content grow to push the footer down */
 }
 
 /* Centered section styling */
@@ -267,67 +263,56 @@ main {
     background-color: #c82333;
 }
 
-/* Concert Details Table Styling */
+/* Concert Details Table Styles */
 .concert-details table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin-top: 20px;
-}
-
-.concert-details th, .concert-details td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .concert-details th, .concert-details td {
+    border: none;
+    padding: 12px 15px;
     text-align: left;
-    font-size: 14px; /* Adjust font size in table cells */
-}
-
-.concert-details th {
-    background-color: #f2f2f2;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .navbar a {
-        float: none;
-        display: block;
-        text-align: left;
+    font-size: 18px;
+  }
+  
+  .concert-details th {
+    background-color: rgba(255, 65, 54, 0.7); /* Reddish background */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .concert-details tr:nth-child(even) {
+    background-color: rgba(255, 247, 0, 0.1); /* Slight yellow tint */
+  }
+  
+  .concert-details tr:hover {
+    background-color: rgba(255, 247, 0, 0.3); /* Stronger yellow on hover */
+    transition: background-color 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .concert-info h2 {
+      font-size: 2em;
     }
-
-    .navbar-container {
-        flex-direction: column;
+    
+    .concert-info li {
+      font-size: 1em;
     }
-
-    .navbar-menu {
-        margin-top: 1rem;
+  
+    .concert-details th, .concert-details td {
+      padding: 8px 10px;
+      font-size: 12px;
     }
-
-    .navbar-item {
-        margin-left: 0;
-        margin-right: 1rem;
-    }
-
-    .artists-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .carousel-slide img {
-        width: 100%;
-    }
-
-    /* Responsive adjustments for details */
-    .artist-info p {
-        font-size: 14px; /* Adjust for smaller screens */
-    }
-
-    .artist-info .detail-name {
-        font-size: 16px; /* Adjust for smaller screens */
-    }
-
-    .artist-info .detail-date, .artist-info .detail-location {
-        font-size: 14px; /* Adjust for smaller screens */
-    }
-}
-
+  }
 
 .hero {
     position: relative;
@@ -364,18 +349,13 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
-    position: relative;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     overflow: hidden;
 }
 
-/* Footer styling */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    flex-shrink: 0; /* Prevents the footer from shrinking */
-}
 
 /* Footer content styling */
 .footer-content {
@@ -428,6 +408,7 @@ footer p {
     flex-direction: column;
     padding: 2em;
     text-align: center;
+    height: 100%;
 }
 
 .concert-info img {
@@ -437,22 +418,59 @@ footer p {
     margin-bottom: 1em;
 }
 
-.concert-info h2 {
-    margin-top: 1em;
-}
-
-.concert-info ul {
-    list-style-position: inside;
-    padding: 0;
-    margin: 0 auto;
-    max-width: 600px;
-}
-
-.concert-info li {
+/* Concert Info Styles */
+.concert-info {
+    background: linear-gradient(135deg, #FFF700, #FF4136);
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+  }
+  
+  .concert-info h2 {
     text-align: center;
-    font-size: 16px;
-    margin: 0.5em 0;
-}
+    font-size: 2.5em;
+    color: #1A1A1A;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5em;
+  }
+  
+  .concert-info ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .concert-info li {
+    text-align: center;
+    font-size: 1.25em;
+    margin: 0.75em 0;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .concert-info li:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .concert-info li strong {
+    color: #D81B60;
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+  
+  @media (max-width: 768px) {
+    .concert-info h2 {
+      font-size: 2em;
+    }
+    
+    .concert-info li {
+      font-size: 1em;
+    }
+  }
 
 .no-bullets {
     list-style-type: none;
@@ -463,3 +481,56 @@ footer p {
 .no-bullets li {
     padding-left: 0; /* Remove any left padding that might be causing the asterisks */
 }
+
+/* Error page */
+.error-page {
+    min-height: calc(100vh - 60px); /* Adjust based on your navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.error-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 80%;
+}
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+.error-container h1 {
+    color: #ff5722;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.error-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+/* New styles specific to search results */
+.search-results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .search-results-container .artist-card {
+    width: 300px;
+    margin: 50 auto;
+  }
+  
+  /* Media query for responsive design */
+  @media (max-width: 768px) {
+    .search-results-container .artist-card {
+      width: 100%;
+    }
+  }
