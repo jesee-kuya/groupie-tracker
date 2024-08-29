@@ -1,8 +1,11 @@
 /* General body styling */
 body {
-    background-image: linear-gradient(#fdbb2d, #b21f1f);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    background-image: linear-gradient(#fdbb2d, #b21f1f);
 }
 
 /* Navbar styling */
@@ -120,8 +123,11 @@ header {
 
 /* Main content padding */
 main {
-    padding: 2em;
+    padding: 2em;   
+    flex: 1 0 auto;
     text-align: center;
+    padding: 2em;
+    padding-bottom: 100px; /* Adjust this value based on your footer height */
 }
 
 /* Centered section styling */
@@ -349,11 +355,11 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 
