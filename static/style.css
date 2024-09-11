@@ -136,6 +136,14 @@ main {
     text-align: center;
 }
 
+.artist-info h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #1A1A1A;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5em;
+}
+
 /* Styling for lists within artist-info */
 .artist-info ul {
     list-style-type: none;
