@@ -195,6 +195,7 @@ main {
 
 /* Styling for each artist card */
 .artist-card {
+    position: relative;
     background-color: white;
     border: 1px solid #ccc;
     padding: 1em;
@@ -208,6 +209,16 @@ main {
 .artist-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the overlay link */
+.artist-link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
 }
 
 /* Styling for images within cards */
@@ -231,49 +242,57 @@ main {
     font-size: 0.9em;
 }
 
-/* Styling for card links (locations, dates, relations) */
-.artist-card a {
+/* Styling for artist links container */
+.artist-links {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: 0.6em;
+    margin-top: 0.5em;
+}
+
+/* Styling for artist links */
+.artist-link {
     display: inline-block;
-    margin: 0.5em 0.3em;
     padding: 0.5em 1em;
     text-decoration: none;
     color: #fff;
-    background-color: #fff;
+    background-color: #007bff;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.9em;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effect for card links */
-.artist-card a:hover {
-    background-color: #fff;
+/* Hover effect for artist links */
+.artist-link:hover {
     transform: translateY(-2px);
 }
 
 /* Specific colors for each link type */
-.artist-card a[href*="location"] {
+.artist-link[href*="location"] {
     background-color: #28a745;
 }
 
-.artist-card a[href*="location"]:hover {
+.artist-link[href*="location"]:hover {
     background-color: #218838;
 }
 
-.artist-card a[href*="dates"] {
+.artist-link[href*="dates"] {
     background-color: #ffc107;
     color: #333;
 }
 
-.artist-card a[href*="dates"]:hover {
+.artist-link[href*="dates"]:hover {
     background-color: #e0a800;
 }
 
-.artist-card a[href*="relations"] {
+.artist-link[href*="relations"] {
     background-color: #dc3545;
 }
 
-.artist-card a[href*="relations"]:hover {
+.artist-link[href*="relations"]:hover {
     background-color: #c82333;
 }
 
