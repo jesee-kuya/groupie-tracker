@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <!-- New hero section with the concert image -->
     <section class="hero">
         <img src="/static/images/Groupie1Cropd.jpeg" alt="Concert crowd with spectacular light show" class="hero-image">
         <div class="hero-content">
@@ -15,15 +14,16 @@
         <div class="artists-grid">
             {{ range . }}
             <div class="artist-card">
-                <a href="/artist?id={{.Id}}">
-                    <img src="{{ .Image }}" alt="{{ .Name }}">
-                </a>
+                <a href="/artist?id={{.Id}}" class="artist-link-overlay"></a>
+                <img src="{{ .Image }}" alt="{{ .Name }}">
                 <h3>{{ .Name }}</h3>
                 <p>Creation Date: {{ .CreationDate }}</p>
                 <p>First Album: {{ .FirstAlbum }}</p>
-                <a href="/location?id={{.Id}}">Locations</a>
-                <a href="/dates?id={{.Id}}">Dates</a>
-                <a href="/relations?id={{.Id}}">Relations</a>
+                <div class="artist-links">
+                    <a href="/location?id={{.Id}}" class="artist-link">Locations</a>
+                    <a href="/dates?id={{.Id}}" class="artist-link">Dates</a>
+                    <a href="/relations?id={{.Id}}" class="artist-link">Relations</a>
+                </div>
             </div>
             {{ end }}
         </div>
