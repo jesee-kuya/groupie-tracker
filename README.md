@@ -20,11 +20,11 @@ Artist Information: Displays comprehensive details about artists, including band
 
 To access the web page clone the repository using the link below;
 ```bash
-git clone https://learn.zone01kisumu.ke/git/jkuya/groupie-tracker.git
+git clone https://learn.zone01kisumu.ke/git/weakinyi/groupie-tracker-visualizations.git
 ```
 Go to the project directory
 ```bash
-cd groupie-tracker
+cd groupie-tracker-visualizations
 ```
 When on the working directory run the command below on your terminal to start the server;
 ```bash
