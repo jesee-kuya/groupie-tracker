@@ -15,7 +15,6 @@ type Info struct {
 	Data  interface{}
 }
 
-// Variables to store fetched data and parsed templates.
 var (
 	Artiste, Err1     = groupie.FetchArtist()
 	Emplacement, Err2 = groupie.FetchLocation()
@@ -35,7 +34,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Route requests based on URL path and HTTP method.
 	if r.URL.Path == "/" || r.URL.Path == "/home" {
 		if r.Method == "GET" {
 			HomeHandler(w, r)
