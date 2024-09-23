@@ -11,17 +11,17 @@ import (
 
 // Info holds the title and data to be rendered by the template.
 type Info struct {
-	Title string      
-	Data  interface{} 
+	Title string
+	Data  interface{}
 }
 
 // Variables to store fetched data and parsed templates.
 var (
-	Artiste, Err1     = groupie.FetchArtist()   
-	Emplacement, Err2 = groupie.FetchLocation()  
-	Rapports, Err3    = groupie.FetchRelation()  
-	Tarehe, Err4      = groupie.FetchDates()     
-	Temp, Err5        = template.ParseGlob("template/*.html") 
+	Artiste, Err1     = groupie.FetchArtist()
+	Emplacement, Err2 = groupie.FetchLocation()
+	Rapports, Err3    = groupie.FetchRelation()
+	Tarehe, Err4      = groupie.FetchDates()
+	Temp, Err5        = template.ParseGlob("template/*.html")
 )
 
 // Handler routes incoming HTTP requests to the appropriate handler functions.
@@ -35,66 +35,66 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/", "/home":
 		if r.Method == "GET" {
-			HomeHandler(w, r) 
+			HomeHandler(w, r)
 		} else {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		}
 
 	case "/artist":
 		if r.Method == "GET" {
-			ArtistHandler(w, r) 
+			ArtistHandler(w, r)
 		} else {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		}
 
 	case "/location":
 		if r.Method == "GET" {
-			LocationtHandler(w, r) 
+			LocationtHandler(w, r)
 		} else {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		}
 
 	case "/dates":
 		if r.Method == "GET" {
-			DatesHandler(w, r) 
+			DatesHandler(w, r)
 		} else {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		}
 
 	case "/relations":
 		if r.Method == "GET" {
-			RelationsHandler(w, r) 
+			RelationsHandler(w, r)
 		} else {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		}
 
 	case "/search":
 		if r.Method == "GET" {
-			SearchHandler(w, r) 
+			SearchHandler(w, r)
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 		}
 
 	default:
-		ErrorPage(w, r, http.StatusNotFound, "Not found") 
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
 	}
 }
 
 // ErrorPage generates an error page with the specified HTTP status code and message.
 func ErrorPage(w http.ResponseWriter, r *http.Request, code int, msg string) {
 	var data Info
-	data.Title = "error"                         
-	data.Data = fmt.Sprintf("Error: %v %v.", code, msg) 
-	w.WriteHeader(code)                         
-	Temp.ExecuteTemplate(w, "base.html", data) 
+	data.Title = "error"
+	data.Data = fmt.Sprintf("Error: %v %v.", code, msg)
+	w.WriteHeader(code)
+	Temp.ExecuteTemplate(w, "base.html", data)
 }
 
 // GetId extracts and validates the artist ID from the query parameters.
 func GetId(w http.ResponseWriter, r *http.Request) int {
-	strId := r.URL.Query().Get("id")        
-	id, err := strconv.Atoi(strId)        
+	strId := r.URL.Query().Get("id")
+	id, err := strconv.Atoi(strId)
 	if err != nil || id > len(Artiste) || id <= 0 {
-		ErrorPage(w, r, http.StatusNotFound, "Not found") 
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return 0
 	}
-	return id 
+	return id
 }

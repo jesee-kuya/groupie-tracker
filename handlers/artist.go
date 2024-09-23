@@ -8,8 +8,8 @@ import (
 
 // Data holds the artist and relation information for rendering.
 type Data struct {
-	Artist   groupie.Artist    
-	Relation groupie.Indexxxx   
+	Artist   groupie.Artist
+	Relation groupie.Indexxxx
 }
 
 // ArtistHandler handles the HTTP request for displaying artist details.
@@ -21,12 +21,12 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the artist ID from the query parameters.
 	id := GetId(w, r)
 	if id <= 0 {
-		return 
+		return
 	}
 
 	// Assign the artist and its relation information to the Data struct.
-	relate.Artist = Artiste[id-1]      
-	relate.Relation = Rapports.Index[id-1] 
+	relate.Artist = Artiste[id-1]
+	relate.Relation = Rapports.Index[id-1]
 
 	// Set the title and data for the template.
 	data.Title = "Artist"

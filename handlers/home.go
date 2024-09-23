@@ -14,7 +14,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Set the data for the home page, which includes the list of artists.
 	data.Data = Artiste
 
-
 	w.WriteHeader(http.StatusOK)
 
 	// Render the base template with the home page data.

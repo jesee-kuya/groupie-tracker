@@ -8,8 +8,8 @@ import (
 
 // DateData holds the artist details and their concert dates for rendering.
 type DateData struct {
-	Details groupie.Artist  
-	Dt      groupie.Indexxx 
+	Details groupie.Artist
+	Dt      groupie.Indexxx
 }
 
 // DatesHandler handles the HTTP request for displaying concert dates for an artist.
@@ -20,12 +20,12 @@ func DatesHandler(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the artist ID from the query parameters.
 	id := GetId(w, r)
 	if id <= 0 {
-		return 
+		return
 	}
 
 	// Assign the artist details and their concert dates to the DateData struct.
-	details.Details = Artiste[id-1]    
-	details.Dt = Tarehe.Index[id-1]   
+	details.Details = Artiste[id-1]
+	details.Dt = Tarehe.Index[id-1]
 
 	// Set the title and data for the template.
 	data.Title = "dates"
