@@ -26,7 +26,11 @@ var (
 
 // Handler routes incoming HTTP requests to the appropriate handler functions.
 func Handler(w http.ResponseWriter, r *http.Request) {
-	if Err1 != nil || Err2 != nil || Err3 != nil || Err4 != nil || Err5 != nil {
+	if Err5 != nil {
+		Temp, Err5 = template.ParseGlob("template/*.html")
+		return
+	}
+	if Err1 != nil || Err2 != nil || Err3 != nil || Err4 != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal server error")
 		return
 	}
