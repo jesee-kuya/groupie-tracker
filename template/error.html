@@ -1,11 +1,19 @@
 {{define "error"}}
 <html>
-    <main class="error-page">
-        <div class="error-container">
-            <div class="error-icon">☹️</div>
-            <h1>Oops! An Error Occurred</h1>
-            <p>{{.}}</p>
-        </div>
-    </main>
+<main class="error-page">
+    <div class="error-container">
+        <div class="error-icon">☹️</div>
+        <h1>Oops! An Error Occurred</h1>
+        <p>{{.}}</p>
+    </div>
+</main>
+<script type="module">
+    import { fetchHomeOnKeydown } from './static/fetchHome.js';
+
+    // Call the function to activate the keydown listener
+    fetchHomeOnKeydown();
+
+</script>
+
 </html>
 {{end}}
