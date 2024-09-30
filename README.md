@@ -10,6 +10,11 @@ Artist Information: Displays comprehensive details about artists, including band
 - Data Visualization: Utilizes various data visualization techniques (e.g.tables) to present information in a clear and intuitive manner. User interface elements can be customized based on your preferences.
 - Client-Server Interaction: Implements a client-server communication mechanism for specific features you choose to develop. This might involve requesting additional information from the server based on user actions or other events.
 
+## Shortcuts
+
+The project below has implemented the use of shortcuts which include:
+- Alt+h: This shortcut returns the user back to the homepage each time the user uses the shortcut keys while on another page other than the homepage e.g. When the user has encountered an error page, the user can use the shortcut keys to direct back to the homepage. 
+
 ## Technical Considerations
 
 - Backend Language: this project uses go programming language for the backened.
