@@ -1,4 +1,5 @@
 {{define "dates"}}
+
 <body>
     <header>
         <h1>{{.Details.Name}}</h1>
@@ -14,6 +15,14 @@
             </ul>
         </section>
     </main>
+    <script type="module">
+        import { fetchHomeOnKeydown } from './static/fetchHome.js';
+
+        // Call the function to activate the keydown listener
+        fetchHomeOnKeydown();
+
+    </script>
 </body>
+
 </html>
 {{end}}
