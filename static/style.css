@@ -277,19 +277,22 @@ main {
     justify-content: center;
     gap: 0.6em;
     margin-top: 0.5em;
+    margin-bottom: 0.5em; /* Add some space at the bottom */
+    padding: 0 0.5em; /* Add padding on the sides */
 }
 
 /* Styling for artist links */
 .artist-link {
     display: inline-block;
-    padding: 0.5em 1em;
+    padding: 0.4em 0.8em; /* Slightly reduce padding */
     text-decoration: none;
     color: #fff;
     background-color: #007bff;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.85em; /* Slightly reduce font size */
     transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0.2em 0; /* Add a small vertical margin */
 }
 
 /* Hover effect for artist links */
@@ -322,6 +325,7 @@ main {
 .artist-link[href*="relations"]:hover {
     background-color: #c82333;
 }
+
 
 /* Concert Details Table Styles */
 .concert-details table {
