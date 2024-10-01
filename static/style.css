@@ -29,13 +29,25 @@ body {
 /* Logo and Groupie Tracker aligned to the left */
 .navbar-logo {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Reduced from the original size */
     font-weight: bold;
     text-decoration: none;
     display: flex;
     align-items: center;
     margin-right: auto;
-    /* Pushes the logo to the far left */
+}
+
+/* Add these media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .navbar-logo {
+        font-size: 1.3rem; /* Further reduce size on medium screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar-logo {
+        font-size: 1.1rem; /* Even smaller on mobile screens */
+    }
 }
 
 .navbar-logo:hover {
@@ -108,23 +120,52 @@ body {
     /* Set a fixed width for a more compact look */
 }
 
-.navbar-search button {
-    padding: 4px 8px;
-    /* Reduced padding */
-    background-color: #555;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-left: 4px;
-    /* Reduced margin */
-    border-radius: 4px;
-    font-size: 12px;
-    /* Reduced font size */
+
+@media screen and (max-width: 768px) {
+    .navbar-search {
+        margin-left: 0.5rem;
+    }
+
+    .navbar-search input[type="text"] {
+        width: 120px;
+        font-size: 11px;
+    }
+
+    .navbar-search button {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
 }
 
-.navbar-search button:hover {
-    background-color: #777;
+@media screen and (max-width: 480px) {
+    .navbar-search {
+        margin-left: 0.3rem;
+    }
+
+    .navbar-search input[type="text"] {
+        width: 100px;
+        font-size: 10px;
+        padding: 3px;
+    }
+
+    .navbar-search button {
+        padding: 2px 4px;
+        font-size: 10px;
+    }
 }
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .navbar-search input[type="text"] {
+        width: 80px;
+    }
+
+    .navbar-search button {
+        padding: 2px 3px;
+    }
+}
+
+
 
 /* Clear floats after navbar links */
 .navbar::after {
