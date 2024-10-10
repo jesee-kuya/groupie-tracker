@@ -680,29 +680,3 @@ footer p {
     }
 }
 
-/* Style suggestions */
-.suggestions-container {
-    border: 1px dotted #ccc; /* Same border as #result */
-    padding: 3px; /* Same padding as #result */
-    position: absolute; /* Positioning relative to the search bar */
-    background: white; /* Background color */
-    z-index: 1000; /* Ensure it appears above other elements */
-    max-height: 200px; /* Limit height */
-    overflow-y: auto; /* Scroll if necessary */
-    width: calc(100% - 20px); /* Adjust width based on your design */
-  }
-  
-  .suggestions-container ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-  }
-  
-  .suggestions-container ul li {
-    padding: 5px 0; /* Same padding as your existing li */
-  }
-  
-  .suggestions-container ul li:hover {
-    background: #eee; /* Same hover background as your existing li */
-  }
-  
