@@ -11,7 +11,7 @@ body {
 /* Navbar styling */
 .navbar {
     background-color: #333;
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to visible */
     padding: 10px 0px;
     position: sticky;
     top: 0;
@@ -29,7 +29,7 @@ body {
 /* Logo and Groupie Tracker aligned to the left */
 .navbar-logo {
     color: #fff;
-    font-size: 1.5rem; /* Reduced from the original size */
+    font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;
     display: flex;
@@ -52,15 +52,10 @@ body {
 
 .navbar-logo:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    /* Slight white background */
     color: #ff0000;
-    /* Change to golden yellow on hover */
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    /* Subtle glow effect */
     transform: translateY(-2px);
-    /* Slight upward movement */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Subtle shadow for depth */
 }
 
 .navbar-logo img {
@@ -76,49 +71,40 @@ body {
     margin: 0;
     padding: 0;
     margin-left: auto;
-    /* Pushes the menu to the far right */
 }
 
 .navbar-item {
     margin-left: 1rem;
-    /* Adjusts spacing between menu items */
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
+
 .navbar-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    /* Slight white background */
     color: #ff0000;
-    /* Change to golden yellow on hover */
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    /* Subtle glow effect */
     transform: translateY(-2px);
-    /* Slight upward movement */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Subtle shadow for depth */
 }
 
 /* Search bar styling - inline with menu */
 .navbar-search {
-    /* position: relative; */
+    position: relative;
     display: flex;
     align-items: center;
     margin-left: 1rem;
-    /* Same margin as navbar-item */
 }
+
 
 .navbar-search input[type="text"] {
     padding: 4px;
-    /* Reduced padding */
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 12px;
-    /* Reduced font size */
     width: 150px;
-    /* Set a fixed width for a more compact look */
 }
 
 
@@ -659,24 +645,68 @@ footer p {
 }
 
 
-/* New styles specific to search results */
-.search-results-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+/* Suggestions styling */
+.suggestions-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1001; /* Increased z-index to be above the navbar */
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 1px;
 }
 
-.search-results-container .artist-card {
-    width: 300px;
-    margin: 50 auto;
+.suggestions-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Media query for responsive design */
-@media (max-width: 768px) {
-    .search-results-container .artist-card {
-        width: 100%;
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.suggestion-item:hover {
+    background-color: rgba(255, 200, 0, 0.2);
+    color: #333;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .navbar-logo {
+        font-size: 1.3rem;
+    }
+    .navbar-search input[type="text"] {
+        width: 120px;
+        font-size: 11px;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .navbar-logo {
+        font-size: 1.1rem;
+    }
+    .navbar-search {
+        margin-left: 0.3rem;
+    }
+    .navbar-search input[type="text"] {
+        width: 100px;
+        font-size: 10px;
+        padding: 3px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .navbar-search input[type="text"] {
+        width: 80px;
+    }
+}
+
 
