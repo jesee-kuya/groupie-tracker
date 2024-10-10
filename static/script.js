@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     suggestionsContainer.innerHTML = '<div>No suggestions found</div>';
                     return;
                 }
-                
+
+                // Create a list for suggestions
                 let list = '<ul>';
                 data.forEach(item => {
-                    list += `<li>${item.Name} - ${item.Type}</li>`;
+                    list += `<li class="suggestion-item" onclick="selectSuggestion('${item.name}')">${item.name}</li>`;
                 });
                 list += '</ul>';
                 suggestionsContainer.innerHTML = list;
@@ -37,6 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const query = this.value.trim();
         showSuggestions(query); // Call the function to show suggestions
     });
+
+    // Suggestion click handler
+    window.selectSuggestion = function(name) {
+        searchInput.value = name; // Set the input value to the selected suggestion
+        suggestionsContainer.innerHTML = ''; // Clear suggestions
+    };
 
     // Existing form submission handler
     searchForm.addEventListener('submit', function(event) {
