@@ -40,36 +40,26 @@ func TestResponse(t *testing.T) {
 }
 
 func TestFetchArtist(t *testing.T) {
-
-	type Artist struct {
-		Id           int      `json:"id"`
-		Image        string   `json:"image"`
-		Name         string   `json:"name"`
-		Members      []string `json:"members"`
-		CreationDate int      `json:"creationDate"`
-		FirstAlbum   string   `json:"firstAlbum"`
-		ConcertDates string   `json:"concertDates"`
-		Relations    string   `json:"relations"`
-	}
-	
-	// var Artists struct{}
 	tests := []struct {
 		name    string
 		want    Artist
 		wantErr bool
 	}{
 		// TODO: Add test cases.
-		{"Rihanna", Artist{
-			Id: 12, 
-			Image: "https://groupietrackers.herokuapp.com/api/images/rihanna.jpeg", 
-			Name: "Rihanna", 
-			CreationDate: 2003, 
-			Members: []string{0: "Robyn Rihanna Fenty"}, 
-			FirstAlbum: "10-09-2005", 
-			ConcertDates: "https://groupietrackers.herokuapp.com/api/dates/12", 
-			Relations: "https://groupietrackers.herokuapp.com/api/relation/12"}, 
-		false},
-
+		{
+			"Rihanna",
+			Artist{
+				Id:           12,
+				Image:        "https://groupietrackers.herokuapp.com/api/images/rihanna.jpeg",
+				Name:         "Rihanna",
+				CreationDate: 2003,
+				Members:      []string{0: "Robyn Rihanna Fenty"},
+				FirstAlbum:   "10-09-2005",
+				ConcertDates: "https://groupietrackers.herokuapp.com/api/dates/12",
+				Relations:    "https://groupietrackers.herokuapp.com/api/relation/12",
+			},
+			false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -86,6 +76,41 @@ func TestFetchArtist(t *testing.T) {
 			}
 			if !reflect.DeepEqual(foundArtist, tt.want) {
 				t.Errorf("FetchArtist() = %v\n, want %v", foundArtist, tt.want)
+			}
+		})
+	}
+}
+
+func TestFetchLocation(t *testing.T) {
+	type Location struct {
+		Index []Indexx `json:"index"`
+	}
+	
+	tests := []struct {
+		name    string
+		want    Location
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+		{"Mac Miller", Location{
+			Index: []Indexx{
+				{
+					Id: 7, 
+					Locations: []string{0: 	"california-usa", 1: "arizona-usa", 2: "texas-usa"}, 
+					Dates: "https://groupietrackers.herokuapp.com/api/dates/7"},
+			    },
+			}, 
+		false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := FetchLocation()
+			if (err != nil) != tt.wantErr {
+				t.Errorf("FetchLocation() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("FetchLocation() = %v,\n want %v", got, tt.want)
 			}
 		})
 	}
