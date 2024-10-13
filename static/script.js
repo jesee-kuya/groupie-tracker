@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.querySelector('form[action="/search"]');
     const searchInput = searchForm.querySelector('input[name="query"]');
-    const suggestionsContainer = document.createElement('div'); // Create a container for suggestions
+    const suggestionsContainer = document.createElement('div');
     suggestionsContainer.classList.add('suggestions-container');
     searchForm.appendChild(suggestionsContainer);
 
-    // Function to show suggestions
     function showSuggestions(val) {
-        suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+        suggestionsContainer.innerHTML = '';
         if (val === '') {
-            return; // Don't fetch suggestions if the input is empty
+            return;
         }
-
         fetch(`/suggestions?query=${encodeURIComponent(val)}`)
             .then(response => response.json())
             .then(data => {
@@ -19,11 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     suggestionsContainer.innerHTML = '<div>No suggestions found</div>';
                     return;
                 }
-
-                // Create a list for suggestions
                 let list = '<ul>';
                 data.forEach(item => {
-                    list += `<li class="suggestion-item" onclick="selectSuggestion('${item.name}')">${item.name}</li>`;
+                    let displayText = item.matchType === 'Member' ? item.matchedItem : item.name;
+                    let suggestionText = `${displayText} - ${item.matchType}`;
+                    if (item.matchType === 'Location') {
+                        suggestionText = `${item.matchedItem} - ${item.matchType}`;
+                    }
+                    list += `<li class="suggestion-item" onclick="selectSuggestion('${item.artistId}', '${item.matchType}', '${item.matchedItem}')">${suggestionText}</li>`;
                 });
                 list += '</ul>';
                 suggestionsContainer.innerHTML = list;
@@ -33,19 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Event listener for input
     searchInput.addEventListener('input', function() {
         const query = this.value.trim();
-        showSuggestions(query); // Call the function to show suggestions
+        showSuggestions(query);
     });
 
-    // Suggestion click handler
-    window.selectSuggestion = function(name) {
-        searchInput.value = name; // Set the input value to the selected suggestion
-        suggestionsContainer.innerHTML = ''; // Clear suggestions
+    window.selectSuggestion = function(artistId, matchType, matchedItem) {
+        // Navigate to the artist page
+        window.location.href = `/artist?id=${artistId}`;
     };
 
-    // Existing form submission handler
     searchForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const query = searchInput.value.trim();
