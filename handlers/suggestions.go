@@ -1,24 +1,35 @@
 package handlers
 
-import(
-	"net/http"
-	"strings"
-	"encoding/json"
-	groupie "groupie/data"
+import (
+    "encoding/json"
+    "net/http"
+    "strings"
 )
 
-// SuggestionHandler handles suggestions for artists based on a query parameter.
+type SuggestionResult struct {
+    ArtistId int    `json:"artistId"`
+    Name     string `json:"name"`
+    MatchType string `json:"matchType"`
+    MatchedItem string `json:"matchedItem"`
+}
+
 func SuggestionHandler(w http.ResponseWriter, r *http.Request) {
-    var results []groupie.Artist
+    var results []SuggestionResult
     word := r.URL.Query().Get("query")
+    lowercaseWord := strings.ToLower(word)
 
     for _, artist := range Artiste {
-        if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(word)) {
-            results = append(results, artist)
+        matches := matchArtist(artist, lowercaseWord)
+        for _, match := range matches {
+            results = append(results, SuggestionResult{
+                ArtistId: artist.Id,
+                Name: artist.Name,
+                MatchType: match.MatchType,
+                MatchedItem: match.MatchedItem,
+            })
         }
     }
 
-    // Return the results as JSON.
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(results)
 }
