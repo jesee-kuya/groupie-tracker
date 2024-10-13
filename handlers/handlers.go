@@ -81,6 +81,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 			return
 		}
+	} else if r.URL.Path == "/suggestions" {
+		if r.Method == "GET" {
+			SuggestionHandler(w, r)
+			return
+		}else {
+			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+			return
+		}
 	} else {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
