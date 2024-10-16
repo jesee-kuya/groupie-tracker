@@ -14,24 +14,21 @@ type SearchResult struct {
 }
 
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
-    var data Info
-    var results []SearchResult
-    word := r.URL.Query().Get("query")
-    lowercaseWord := strings.ToLower(word)
-
-    for _, artist := range Artiste {
-        matches := matchArtist(artist, lowercaseWord)
-        results = append(results, matches...)
-    }
-
-    if len(results) == 0 {
-        ErrorPage(w, r, http.StatusNotFound, "Not found")
-        return
-    }
-
-    data.Title = "search"
-    data.Data = results
-    Temp.ExecuteTemplate(w, "base.html", data)
+	var data Info
+	var results []groupie.Artist
+	word := r.URL.Query().Get("query")
+	for _, artist := range Artiste {
+		if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(word)) {
+			results = append(results, artist) // Add matching artist to results.
+		}
+	}
+	if results == nil {
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
+		return
+	}
+	data.Title = "search"
+	data.Data = results
+	Temp.ExecuteTemplate(w, "base.html", data)
 }
 
 func matchArtist(artist groupie.Artist, query string) []SearchResult {
