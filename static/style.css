@@ -260,7 +260,7 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
     /* Add max-width to prevent the card from being too wide */
-    max-width: 300px; /* Adjust this value as needed */
+    max-width: 250px; /* Adjust this value as needed */
     
     /* Center the card */
     margin: 1em auto;
