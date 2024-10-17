@@ -71,6 +71,17 @@ body {
     margin: 0;
     padding: 0;
     margin-left: auto;
+    align-items: center;
+}
+
+/* Adjust the list items spacing */
+.navbar-menu li {
+    margin-right: 2rem; /* Add space between list items */
+}
+
+/* Remove margin from the last item (search form) */
+.navbar-menu li:last-child {
+    margin-right: 0;
 }
 
 .navbar-item {
@@ -95,7 +106,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    margin-left: 1rem;
+    margin-left: 3rem;
 }
 
 
@@ -260,7 +271,7 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
     /* Add max-width to prevent the card from being too wide */
-    max-width: 250px; /* Adjust this value as needed */
+    max-width: 300px; /* Adjust this value as needed */
     
     /* Center the card */
     margin: 1em auto;
@@ -651,6 +662,16 @@ footer p {
     color: #333;
 }
 
+form[action="/search"] {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+}
 
 /* Suggestions styling */
 .suggestions-container {

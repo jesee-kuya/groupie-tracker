@@ -1,9 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.querySelector('form[action="/search"]');
     const searchInput = searchForm.querySelector('input[name="query"]');
-    const suggestionsContainer = document.createElement('div');
-    suggestionsContainer.classList.add('suggestions-container');
-    searchForm.appendChild(suggestionsContainer);
+      // Create a wrapper div for the search input and suggestions
+      const searchWrapper = document.createElement('div');
+      searchWrapper.classList.add('search-wrapper');
+      
+      // Move the input into the wrapper
+      searchInput.parentNode.insertBefore(searchWrapper, searchInput);
+      searchWrapper.appendChild(searchInput);
+      
+      const suggestionsContainer = document.createElement('div');
+      suggestionsContainer.classList.add('suggestions-container');
+      
+      // Append suggestions to the wrapper instead of the form
+      searchWrapper.appendChild(suggestionsContainer);
 
     function showSuggestions(val) {
         suggestionsContainer.innerHTML = '';
