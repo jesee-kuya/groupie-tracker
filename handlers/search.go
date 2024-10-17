@@ -36,39 +36,63 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func matchArtist(artist groupie.Artist, query string) []SearchResult {
-	var matches []SearchResult
+    var matches []SearchResult
+    seenMatches := make(map[string]bool) // Track unique matches
 
-	if strings.Contains(strings.ToLower(artist.Name), query) {
-		matches = append(matches, SearchResult{Artist: artist, MatchType: "Artist", MatchedItem: artist.Name})
-	}
+    // Check artist name
+    if strings.Contains(strings.ToLower(artist.Name), query) {
+        key := "Artist-" + artist.Name
+        if !seenMatches[key] {
+            matches = append(matches, SearchResult{Artist: artist, MatchType: "Artist", MatchedItem: artist.Name})
+            seenMatches[key] = true
+        }
+    }
 
-	for _, member := range artist.Members {
-		if strings.Contains(strings.ToLower(member), query) {
-			matches = append(matches, SearchResult{Artist: artist, MatchType: "Member", MatchedItem: member})
-		}
-	}
+    // Check members
+    for _, member := range artist.Members {
+        if strings.Contains(strings.ToLower(member), query) {
+            key := "Member-" + member
+            if !seenMatches[key] {
+                matches = append(matches, SearchResult{Artist: artist, MatchType: "Member", MatchedItem: member})
+                seenMatches[key] = true
+            }
+        }
+    }
 
-	if matchesDate(artist.FirstAlbum, query) {
-		matches = append(matches, SearchResult{Artist: artist, MatchType: "First Album", MatchedItem: artist.FirstAlbum})
-	}
+    // Check dates
+    if matchesDate(artist.FirstAlbum, query) {
+        key := "FirstAlbum-" + artist.FirstAlbum
+        if !seenMatches[key] {
+            matches = append(matches, SearchResult{Artist: artist, MatchType: "First Album", MatchedItem: artist.FirstAlbum})
+            seenMatches[key] = true
+        }
+    }
 
-	if matchesDate(strconv.Itoa(artist.CreationDate), query) {
-		matches = append(matches, SearchResult{Artist: artist, MatchType: "Creation Date", MatchedItem: strconv.Itoa(artist.CreationDate)})
-	}
+    if matchesDate(strconv.Itoa(artist.CreationDate), query) {
+        key := "CreationDate-" + strconv.Itoa(artist.CreationDate)
+        if !seenMatches[key] {
+            matches = append(matches, SearchResult{Artist: artist, MatchType: "Creation Date", MatchedItem: strconv.Itoa(artist.CreationDate)})
+            seenMatches[key] = true
+        }
+    }
 
-	// Search through locations
-	for _, location := range Emplacement.Index {
-		if location.Id == artist.Id {
-			for _, loc := range location.Locations {
-				if strings.Contains(strings.ToLower(loc), query) {
-					matches = append(matches, SearchResult{Artist: artist, MatchType: "Location", MatchedItem: loc})
-				}
-			}
-			break
-		}
-	}
+    // Check locations
+    for _, location := range Emplacement.Index {
+        if location.Id == artist.Id {
+            for _, loc := range location.Locations {
+                if strings.Contains(strings.ToLower(loc), query) {
+                    key := "Location-" + loc
+                    if !seenMatches[key] {
+                        matches = append(matches, SearchResult{Artist: artist, MatchType: "Location", MatchedItem: loc})
+                        seenMatches[key] = true
+                    }
+                }
+            }
+            break
+        }
+    }
 
-	return matches
+    return matches
 }
 
 func matchesDate(date string, query string) bool {

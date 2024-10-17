@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (val === '') {
             return;
         }
+    
         fetch(`/suggestions?query=${encodeURIComponent(val)}`)
             .then(response => response.json())
             .then(data => {
@@ -17,21 +18,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     suggestionsContainer.innerHTML = '<div>No suggestions found</div>';
                     return;
                 }
+    
+                // Create a Set to track unique suggestions
+                const seenSuggestions = new Set();
                 let list = '<ul>';
+                
                 data.forEach(item => {
-                    let displayText = item.matchType === 'Member' ? item.matchedItem : item.name;
-                    let suggestionText = `${displayText} - ${item.matchType}`;
-                    if (item.matchType === 'Location') {
-                        suggestionText = `${item.matchedItem} - ${item.matchType}`;
+                    let suggestionText;
+                    switch(item.matchType) {
+                        case 'Member':
+                            suggestionText = `${item.matchedItem} - ${item.matchType}`;
+                            break;
+                        case 'Location':
+                            suggestionText = `${item.matchedItem} - ${item.matchType}`;
+                            break;
+                        case 'Artist':
+                            suggestionText = `${item.name} - ${item.matchType}`;
+                            break;
+                        default:
+                            suggestionText = `${item.matchedItem} - ${item.matchType}`;
                     }
-                    list += `<li class="suggestion-item" onclick="selectSuggestion('${item.artistId}', '${item.matchType}', '${item.matchedItem}')">${suggestionText}</li>`;
+    
+                    // Only add if we haven't seen this exact suggestion text before
+                    if (!seenSuggestions.has(suggestionText)) {
+                        seenSuggestions.add(suggestionText);
+                        list += `<li class="suggestion-item" onclick="selectSuggestion('${item.artistId}', '${item.matchType}', '${item.matchedItem}')">${suggestionText}</li>`;
+                    }
                 });
+                
                 list += '</ul>';
                 suggestionsContainer.innerHTML = list;
             })
             .catch(err => {
                 console.warn('Something went wrong.', err);
             });
+    
     }
 
     searchInput.addEventListener('input', function() {
@@ -40,10 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.selectSuggestion = function(artistId, matchType, matchedItem) {
-        // Navigate to the artist page
-        window.location.href = `/artist?id=${artistId}`;
+        if (matchType === 'Artist') {
+            // For artists, go directly to their page
+            window.location.href = `/artist?id=${artistId}`;
+        } else {
+            // For locations, members, etc., search for all instances
+            window.location.href = `/search?query=${encodeURIComponent(matchedItem)}`;
+        }
     };
-
     searchForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const query = searchInput.value.trim();
