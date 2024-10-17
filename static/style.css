@@ -673,6 +673,12 @@ form[action="/search"] {
     display: inline-block;
 }
 
+.search-results-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+}
+
 /* Suggestions styling */
 .suggestions-container {
     position: absolute;
