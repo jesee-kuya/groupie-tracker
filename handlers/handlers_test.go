@@ -24,6 +24,7 @@ func TestHandler(t *testing.T) {
 		{"Dates GET", "GET", "http://www.example.com/dates?id=3", http.StatusOK, "Pink Floyd"},
 		{"Relations GET", "GET", "http://www.example.com/relations?id=9", http.StatusOK, "ACDC"},
 		{"Search GET", "GET", "/search", http.StatusOK, ""},
+		{"Suggestions GET", "GET", "/suggestions", http.StatusOK, ""},
 		{"Unknown Path", "GET", "/unknown", http.StatusNotFound, ""},
 	}
 
