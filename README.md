@@ -1,35 +1,50 @@
-# Groupie Tracker
+# Groupie Tracker - Search Bar
 
-Groupie Trackers is a web application designed to empower music enthusiasts by providing a user-friendly platform to explore and track their favorite bands and artists.
+Groupie Tracker Search is a web application designed to empower music enthusiasts by providing a user-friendly platform to explore and track their favorite bands and artists.This search functionality handles multiple search cases, supports real-time suggestions as the user types, and ensures case-insensitive searches. The search results include artist/band names, members, locations, first album release dates, and creation dates.
 
-## Key Features
+## Features
 
-- API Integration: Fetches artist, location, and concert date data from the provided API.
-Artist Information: Displays comprehensive details about artists, including band names, member lists, year of origin, and first album release date.
-- Concert Listings: Presents upcoming and past concert dates and locations, potentially incorporating map visualizations for an enhanced user experience.
-- Data Visualization: Utilizes various data visualization techniques (e.g.tables) to present information in a clear and intuitive manner. User interface elements can be customized based on your preferences.
-- Client-Server Interaction: Implements a client-server communication mechanism for specific features you choose to develop. This might involve requesting additional information from the server based on user actions or other events.
+**1. Search Cases**
 
-## Shortcuts
+The program supports the following search cases:
 
-The project below has implemented the use of shortcuts which include:
-- Alt+h: This shortcut returns the user back to the homepage each time the user uses the shortcut keys while on another page other than the homepage e.g. When the user has encountered an error page, the user can use the shortcut keys to direct back to the homepage. 
+- Artist/Band Name: Allows users to search for artists or bands by name.
+    Members: Users can search for individual members of a band.
+- Locations: Users can search for locations related to an artist or band's performances.
+- First Album Release Date: Users can search by the release date of an artist's or band's first album.
+- Creation Date: Users can search by the date the artist or band was formed.
 
-## Technical Considerations
+**2. Case-Insensitive Search**
 
-- Backend Language: this project uses go programming language for the backened.
+- The search input is case-insensitive, meaning it doesn't matter if the user types in uppercase or lowercase letters. The program normalizes the input and the data before performing the search.
 
-- Frontend Technologies: this project uses HTML and CSS for building the user interface and handling user interactions.
+**3. Typing Suggestions**
+
+As users type in the search bar, they receive dynamic suggestions based on their input. The suggestions appear in real-time and display:
+
+- Artist/Band Name
+- Member Name
+- Location
+- First Album Release Date
+- Creation Date
+
+The suggestion list will also specify the type of result (e.g., "Phil Collins - artist/band" or "Freddie Mercury - member").
+How It Works
+
+- Search Input: Users begin typing in the search bar, which triggers a fetch request to retrieve possible matches based on the input.
+- Typing Suggestions: As the user types, suggestions are displayed based on the input. These suggestions are fetched dynamically and appear beneath the search bar.
+- Selecting a Suggestion: When a suggestion is clicked or the user presses Enter, the user is redirected to a page displaying the relevant artist/band's detailed information.
+- Search Results: If the input matches any artist, band, or related information, the program displays the results in a structured format. If no matches are found, an error page will inform the user that no results are available.
 
 ## Project Setup
 
 To access the web page clone the repository using the link below;
 ```bash
-git clone https://learn.zone01kisumu.ke/git/weakinyi/groupie-tracker-visualizations.git
+git clone https://learn.zone01kisumu.ke/git/weakinyi/groupie-tracker-search-bar.git
 ```
 Go to the project directory
 ```bash
-cd groupie-tracker-visualizations
+cd groupie-tracker-search-bar
 ```
 When on the working directory run the command below on your terminal to start the server;
 ```bash
