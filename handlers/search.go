@@ -17,8 +17,8 @@ type SearchResult struct {
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
 	var results []groupie.Artist
-	// var newResults []groupie.Artist
-	// var ids []int
+	var newResults []groupie.Artist
+	var ids []int
 	word := r.URL.Query().Get("query")
 	lowercaseWord := strings.ToLower(word)
 
@@ -32,7 +32,6 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
-
 	
 	data.Title = "search"
 	data.Data = results
