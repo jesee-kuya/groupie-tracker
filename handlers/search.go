@@ -32,6 +32,13 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
+
+    for _, v := range results {
+		if !Contains(v.Id, ids) {
+			ids = append(ids, v.Id)
+			newResults = append(newResults, v)
+		}
+	}
 	
 	data.Title = "search"
 	data.Data = results
