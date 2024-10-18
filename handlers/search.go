@@ -41,7 +41,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	data.Title = "search"
-	data.Data = results
+	data.Data = newResults
 	Temp.ExecuteTemplate(w, "base.html", data)
 }
 
