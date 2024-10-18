@@ -17,6 +17,8 @@ type SearchResult struct {
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	var data Info
 	var results []groupie.Artist
+	// var newResults []groupie.Artist
+	// var ids []int
 	word := r.URL.Query().Get("query")
 	lowercaseWord := strings.ToLower(word)
 
@@ -30,71 +32,83 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
+
+	
 	data.Title = "search"
 	data.Data = results
 	Temp.ExecuteTemplate(w, "base.html", data)
 }
 
 func matchArtist(artist groupie.Artist, query string) []SearchResult {
-    var matches []SearchResult
-    seenMatches := make(map[string]bool) // Track unique matches
+	var matches []SearchResult
+	seenMatches := make(map[string]bool) // Track unique matches
 
-    // Check artist name
-    if strings.Contains(strings.ToLower(artist.Name), query) {
-        key := "Artist-" + artist.Name
-        if !seenMatches[key] {
-            matches = append(matches, SearchResult{Artist: artist, MatchType: "Artist", MatchedItem: artist.Name})
-            seenMatches[key] = true
-        }
-    }
+	// Check artist name
+	if strings.Contains(strings.ToLower(artist.Name), query) {
+		key := "Artist-" + artist.Name
+		if !seenMatches[key] {
+			matches = append(matches, SearchResult{Artist: artist, MatchType: "Artist", MatchedItem: artist.Name})
+			seenMatches[key] = true
+		}
+	}
 
-    // Check members
-    for _, member := range artist.Members {
-        if strings.Contains(strings.ToLower(member), query) {
-            key := "Member-" + member
-            if !seenMatches[key] {
-                matches = append(matches, SearchResult{Artist: artist, MatchType: "Member", MatchedItem: member})
-                seenMatches[key] = true
-            }
-        }
-    }
+	// Check members
+	for _, member := range artist.Members {
+		if strings.Contains(strings.ToLower(member), query) {
+			key := "Member-" + member
+			if !seenMatches[key] {
+				matches = append(matches, SearchResult{Artist: artist, MatchType: "Member", MatchedItem: member})
+				seenMatches[key] = true
+			}
+		}
+	}
 
-    // Check dates
-    if matchesDate(artist.FirstAlbum, query) {
-        key := "FirstAlbum-" + artist.FirstAlbum
-        if !seenMatches[key] {
-            matches = append(matches, SearchResult{Artist: artist, MatchType: "First Album", MatchedItem: artist.FirstAlbum})
-            seenMatches[key] = true
-        }
-    }
+	// Check dates
+	if matchesDate(artist.FirstAlbum, query) {
+		key := "FirstAlbum-" + artist.FirstAlbum
+		if !seenMatches[key] {
+			matches = append(matches, SearchResult{Artist: artist, MatchType: "First Album", MatchedItem: artist.FirstAlbum})
+			seenMatches[key] = true
+		}
+	}
 
-    if matchesDate(strconv.Itoa(artist.CreationDate), query) {
-        key := "CreationDate-" + strconv.Itoa(artist.CreationDate)
-        if !seenMatches[key] {
-            matches = append(matches, SearchResult{Artist: artist, MatchType: "Creation Date", MatchedItem: strconv.Itoa(artist.CreationDate)})
-            seenMatches[key] = true
-        }
-    }
+	if matchesDate(strconv.Itoa(artist.CreationDate), query) {
+		key := "CreationDate-" + strconv.Itoa(artist.CreationDate)
+		if !seenMatches[key] {
+			matches = append(matches, SearchResult{Artist: artist, MatchType: "Creation Date", MatchedItem: strconv.Itoa(artist.CreationDate)})
+			seenMatches[key] = true
+		}
+	}
 
-    // Check locations
-    for _, location := range Emplacement.Index {
-        if location.Id == artist.Id {
-            for _, loc := range location.Locations {
-                if strings.Contains(strings.ToLower(loc), query) {
-                    key := "Location-" + loc
-                    if !seenMatches[key] {
-                        matches = append(matches, SearchResult{Artist: artist, MatchType: "Location", MatchedItem: loc})
-                        seenMatches[key] = true
-                    }
-                }
-            }
-            break
-        }
-    }
+	// Check locations
+	for _, location := range Emplacement.Index {
+		if location.Id == artist.Id {
+			for _, loc := range location.Locations {
+				if strings.Contains(strings.ToLower(loc), query) {
+					key := "Location-" + loc
+					if !seenMatches[key] {
+						matches = append(matches, SearchResult{Artist: artist, MatchType: "Location", MatchedItem: loc})
+						seenMatches[key] = true
+					}
+				}
+			}
+			break
+		}
+	}
 
-    return matches
+	return matches
 }
 
 func matchesDate(date string, query string) bool {
 	return strings.Contains(strings.ToLower(date), query)
+}
+
+// Contains checks if an integer is present in a slice of integers
+func Contains(id int, ids []int) bool {
+	for _, v := range ids {
+		if v == id {
+			return true
+		}
+	}
+	return false
 }
