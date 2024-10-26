@@ -13,5 +13,7 @@
 {{ template "relations" .Data}}
 {{else if eq "search" .Title}}
 {{template "search" .Data}}
+{{else if eq "filter" .Title}}
+{{template "filter" .Data}}
 {{end}}
 {{ template "footer"}}
