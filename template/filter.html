@@ -1,3 +1,78 @@
-{{ define "Filter" }}
+{{ define "filter" }}
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/filter.css">
+</head>
+<body>
+    <section class="hero">
+        <img src="/static/images/Groupie1Cropd.jpeg" alt="Concert crowd with spectacular light show" class="hero-image">
+        <div class="hero-content">
+            <h1>Filter Artists</h1>
+        </div>
+    </section>
 
+    <div class="filter-container">
+        <form id="filterForm">
+            <div class="filter-section">
+                <h2>Creation Date Range</h2>
+                <div class="date-range">
+                    <div class="filter-group">
+                        <label for="creationDateFrom">From Year:</label>
+                        <input type="number" id="creationDateFrom" min="1900" max="2024">
+                    </div>
+                    <div class="filter-group">
+                        <label for="creationDateTo">To Year:</label>
+                        <input type="number" id="creationDateTo" min="1900" max="2024">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h2>First Album Date Range</h2>
+                <div class="date-range">
+                    <div class="filter-group">
+                        <label for="albumDateFrom">From Year:</label>
+                        <input type="number" id="albumDateFrom" min="1900" max="2024">
+                    </div>
+                    <div class="filter-group">
+                        <label for="albumDateTo">To Year:</label>
+                        <input type="number" id="albumDateTo" min="1900" max="2024">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h2>Number of Members</h2>
+                <div class="date-range">
+                    <div class="filter-group">
+                        <label for="membersMin">Minimum:</label>
+                        <input type="number" id="membersMin" min="1" max="52">
+                    </div>
+                    <div class="filter-group">
+                        <label for="membersMax">Maximum:</label>
+                        <input type="number" id="membersMax" min="1" max="52">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h2>Location</h2>
+                <div class="filter-group">
+                    <label for="location">Search by location:</label>
+                    <input type="text" id="location" placeholder="Enter city, country, or continent">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="apply-filter">Apply Filters</button>
+                <button type="reset" class="reset-filter">Reset Filters</button>
+                <a href="/" class="return-home">Return Home</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="/static/filter.js"></script>
+</body>
+</html>
 {{ end }}
