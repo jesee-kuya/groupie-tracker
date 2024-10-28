@@ -89,6 +89,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 			return
 		}
+	} else if r.URL.Path == "/filter" {
+		if r.Method != "GET" {
+			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
+			return
+		}
+		Filter(w, r)
+		return
 	} else {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
