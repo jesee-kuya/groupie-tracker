@@ -98,9 +98,11 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	} else if r.URL.Path == "/result" {
 		if r.Method != "POST" {
-			ErrorPage(w,r, http.StatusMethodNotAllowed, "Method not allowed")
+			ErrorPage(w, r, http.StatusMethodNotAllowed, "Method not allowed")
 			return
 		}
+		Results(w, r)
+		return
 	} else {
 		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return

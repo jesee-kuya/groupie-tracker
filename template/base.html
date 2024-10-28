@@ -15,5 +15,7 @@
 {{ template "search" .Data }}
 {{ else if eq "filter" .Title }}
 {{ template "filter" .Data }}
+{{ else if eq "result" .Title}}
+{{ template "home" .Data}}
 {{end}}
 {{ template "footer"}}

@@ -36,6 +36,10 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	data.Title = "result"
 	data.Data = result
 
+	if result == nil {
+		ErrorPage(w,r, http.StatusNotFound, "Not found")
+		return
+	}
 	w.WriteHeader(http.StatusOK)
 	Temp.ExecuteTemplate(w, "base.html", data)
 }
