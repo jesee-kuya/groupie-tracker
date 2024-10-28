@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -23,6 +24,14 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	maxMembers, err3 := strconv.Atoi(r.Form.Get("membersMax"))
 	location := r.Form.Get("location")
 
+	fmt.Println(creationFrm)
+	fmt.Println(creationTo)
+	fmt.Println(albumFrm)
+	fmt.Println(albumTo)
+	fmt.Println(minMembers)
+	fmt.Println(maxMembers)
+	fmt.Println(location)
+
 	if err != nil || err1 != nil || err2 != nil || err3 != nil {
 		ErrorPage(w, r, http.StatusBadRequest, "Bad request")
 		return
@@ -37,7 +46,7 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	data.Data = result
 
 	if result == nil {
-		ErrorPage(w,r, http.StatusNotFound, "Not found")
+		ErrorPage(w, r, http.StatusNotFound, "Not found")
 		return
 	}
 	w.WriteHeader(http.StatusOK)
