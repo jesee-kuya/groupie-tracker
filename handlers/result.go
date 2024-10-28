@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -23,14 +22,6 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	minMembers, err2 := strconv.Atoi(r.Form.Get("membersMin"))
 	maxMembers, err3 := strconv.Atoi(r.Form.Get("membersMax"))
 	location := r.Form.Get("location")
-
-	fmt.Println(creationFrm)
-	fmt.Println(creationTo)
-	fmt.Println(albumFrm)
-	fmt.Println(albumTo)
-	fmt.Println(minMembers)
-	fmt.Println(maxMembers)
-	fmt.Println(location)
 
 	if err != nil || err1 != nil || err2 != nil || err3 != nil {
 		ErrorPage(w, r, http.StatusBadRequest, "Bad request")
@@ -71,6 +62,9 @@ func AlbumYear(res []groupie.Artist, AlbumFrm, AlbumTo string) (result []groupie
 			result = append(result, artist)
 		}
 	}
+	if result == nil {
+		result = res
+	}
 	return
 }
 
@@ -83,12 +77,18 @@ func Members(res []groupie.Artist, minMembers, maxMembers int) (result []groupie
 			result = append(result, artist)
 		}
 	}
+	if result == nil {
+		result = res
+	}
 	return
 }
 
 func SearchLocation(res []groupie.Artist, location string) (result []groupie.Artist) {
 	if res == nil {
 		res = Artiste
+	}
+	if location == "" {
+		return res
 	}
 	for _, artist := range res {
 		for _, locale := range Emplacement.Index {
@@ -102,6 +102,9 @@ func SearchLocation(res []groupie.Artist, location string) (result []groupie.Art
 				break
 			}
 		}
+	}
+	if result == nil {
+		result = res
 	}
 	return
 }
