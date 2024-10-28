@@ -14,8 +14,8 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	}
 	creationFrm, err := strconv.Atoi(r.Form.Get("creationDateFrom"))
 	creationTo, err := strconv.Atoi(r.Form.Get("creationDateTo"))
-	albumFromYear, err:= strconv.Atoi(r.Form.Get("albumDateFrom"))
-	albumtoYear, err := strconv.Atoi(r.Form.Get("albumDateTo"))
+	albumFrm := r.Form.Get("albumDateFrom")
+	albumTo := r.Form.Get("albumDateTo")
 	minMembers, err := strconv.Atoi(r.Form.Get("membersMin"))
 	maxMembers, err := strconv.Atoi(r.Form.Get("membersMax"))
 	location, err := strconv.Atoi(r.Form.Get("location"))
@@ -25,6 +25,7 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	result = CreationDate(creationFrm, creationTo)
+	result = AlbumYear(result, albumFrm, albumTo)
 }
 
 func CreationDate(creationFrm, creationTo int) (result []groupie.Artist) {
@@ -36,12 +37,24 @@ func CreationDate(creationFrm, creationTo int) (result []groupie.Artist) {
 	return
 }
 
-func AlbumYear(res []groupie.Artist, AlbumFrm, AlbumTo int) (result []groupie.Artist) {
+func AlbumYear(res []groupie.Artist, AlbumFrm, AlbumTo string) (result []groupie.Artist) {
 	if res == nil {
 		res = Artiste
 	}
 	for _ , artist := range res {
-		if artist.CreationDate >= AlbumFrm && artist.CreationDate <=AlbumTo {
+		if artist.FirstAlbum >= AlbumFrm && artist.FirstAlbum <=AlbumTo {
+			result = append(result, artist)
+		}
+	}
+	return
+}
+
+func Members(res []groupie.Artist, minMembers, maxMembers int) (result []groupie.Artist) {
+	if res == nil {
+		res = Artiste
+	}
+	for _ , artist := range res {
+		if len(artist.Members) <= minMembers && len(artist.Members)>= maxMembers {
 			result = append(result, artist)
 		}
 	}
