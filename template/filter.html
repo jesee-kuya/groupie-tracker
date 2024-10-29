@@ -15,17 +15,37 @@
         <form id="filterForm" action="/result" method="post">
             <div class="filter-section">
                 <h2>Creation Date Range</h2>
-                <div class="slider-container">
-                    <input type="range" id="creationDateSlider" name="creationDate" min="1900" max="2024" value="1900">
-                    <div class="slider-value">Selected Year: <span id="creationDateValue">1900</span></div>
+                <div class="dual-slider-container">
+                    <div class="slider-wrap">
+                        <label>From:</label>
+                        <input type="range" id="creationDateMin" name="creationDateFrom" 
+                               min="1900" max="2024" value="1900" class="range-min">
+                        <div class="slider-value">Year: <span id="creationDateMinValue">1900</span></div>
+                    </div>
+                    <div class="slider-wrap">
+                        <label>To:</label>
+                        <input type="range" id="creationDateMax" name="creationDateTo" 
+                               min="1900" max="2024" value="2024" class="range-max">
+                        <div class="slider-value">Year: <span id="creationDateMaxValue">2024</span></div>
+                    </div>
                 </div>
             </div>
             
             <div class="filter-section">
                 <h2>First Album Date Range</h2>
-                <div class="slider-container">
-                    <input type="range" id="albumDateSlider" name="albumDate" min="1900" max="2024" value="1900">
-                    <div class="slider-value">Selected Year: <span id="albumDateValue">1900</span></div>
+                <div class="dual-slider-container">
+                    <div class="slider-wrap">
+                        <label>From:</label>
+                        <input type="range" id="albumDateMin" name="albumDateFrom" 
+                               min="1900" max="2024" value="1900" class="range-min">
+                        <div class="slider-value">Year: <span id="albumDateMinValue">1900</span></div>
+                    </div>
+                    <div class="slider-wrap">
+                        <label>To:</label>
+                        <input type="range" id="albumDateMax" name="albumDateTo" 
+                               min="1900" max="2024" value="2024" class="range-max">
+                        <div class="slider-value">Year: <span id="albumDateMaxValue">2024</span></div>
+                    </div>
                 </div>
             </div>
 
