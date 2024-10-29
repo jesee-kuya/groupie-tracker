@@ -11,47 +11,66 @@
             <h1>Filter Artists</h1>
         </div>
     </section>
-
     <div class="filter-container">
         <form id="filterForm" action="/result" method="post">
             <div class="filter-section">
                 <h2>Creation Date Range</h2>
-                <div class="date-range">
-                    <div class="filter-group">
-                        <label for="creationDateFrom">From Year:</label>
-                        <input type="number" name="creationDateFrom" id="creationDateFrom" min="1900" max="2024">
-                    </div>
-                    <div class="filter-group">
-                        <label for="creationDateTo">To Year:</label>
-                        <input type="number" name="creationDateTo" id="creationDateTo" min="1900" max="2024">
-                    </div>
+                <div class="slider-container">
+                    <input type="range" id="creationDateSlider" name="creationDate" min="1900" max="2024" value="1900">
+                    <div class="slider-value">Selected Year: <span id="creationDateValue">1900</span></div>
                 </div>
             </div>
-
+            
             <div class="filter-section">
                 <h2>First Album Date Range</h2>
-                <div class="date-range">
-                    <div class="filter-group">
-                        <label for="albumDateFrom">From Year:</label>
-                        <input type="number" name="albumDateFrom" id="albumDateFrom" min="1900" max="2024">
-                    </div>
-                    <div class="filter-group">
-                        <label for="albumDateTo">To Year:</label>
-                        <input type="number" name="albumDateTo" id="albumDateTo" min="1900" max="2024">
-                    </div>
+                <div class="slider-container">
+                    <input type="range" id="albumDateSlider" name="albumDate" min="1900" max="2024" value="1900">
+                    <div class="slider-value">Selected Year: <span id="albumDateValue">1900</span></div>
                 </div>
             </div>
 
             <div class="filter-section">
                 <h2>Number of Members</h2>
-                <div class="date-range">
-                    <div class="filter-group">
-                        <label for="membersMin">Minimum:</label>
-                        <input type="number" name="membersMin" id="membersMin" min="1" max="52">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members1" name="members[]" value="1">
+                        <label for="members1">1</label>
                     </div>
-                    <div class="filter-group">
-                        <label for="membersMax">Maximum:</label>
-                        <input type="number" name="membersMax" id="membersMax" min="1" max="52">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members2" name="members[]" value="2">
+                        <label for="members2">2</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members3" name="members[]" value="3">
+                        <label for="members3">3</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members4" name="members[]" value="4">
+                        <label for="members4">4</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members5" name="members[]" value="5">
+                        <label for="members5">5</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members6" name="members[]" value="6">
+                        <label for="members6">6</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members7" name="members[]" value="7">
+                        <label for="members7">7</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members8" name="members[]" value="8">
+                        <label for="members8">8</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members9" name="members[]" value="9">
+                        <label for="members9">9</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="members10plus" name="members[]" value="10+">
+                        <label for="members10plus">10+</label>
                     </div>
                 </div>
             </div>
@@ -71,7 +90,6 @@
             </div>
         </form>
     </div>
-
     <script src="/static/filter.js"></script>
 </body>
 </html>
