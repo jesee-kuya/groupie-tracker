@@ -333,17 +333,21 @@ main {
     padding: 0.4em 0.8em; /* Slightly reduce padding */
     text-decoration: none;
     color: #fff;
-    background-color: #007bff;
+    background-color: #dc3545;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 0.85em; /* Slightly reduce font size */
+    font-size: 1 em; /* Slightly reduce font size */
     transition: background-color 0.3s ease, transform 0.3s ease;
     margin: 0.2em 0; /* Add a small vertical margin */
+    justify-content: center;
 }
 
 /* Hover effect for artist links */
 .artist-link:hover {
     transform: translateY(-2px);
+    background-color: #28a745;; 
+    color: #fff; 
+    font-size: 1em;
 }
 
 /* Specific colors for each link type */
@@ -743,6 +747,11 @@ form[action="/search"] {
     }
 }
 
+.filter-button-container {
+    text-align: center; 
+    padding: 20px;
+}
+
 /* Range Slider */
 .double_range_slider_box {
     padding: 20px;
@@ -806,6 +815,7 @@ input[type="range"]::-moz-range-thumb {
     color: #666;
     margin-top: 10px;
 }
+
 
 
 
