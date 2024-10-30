@@ -743,19 +743,16 @@ form[action="/search"] {
     }
 }
 
-
 /* Range Slider */
 .double_range_slider_box {
     padding: 20px;
     margin-bottom: 20px;
 }
-
 .double_range_slider {
     position: relative;
     width: 100%;
     height: 50px;
 }
-
 .range_track {
     position: absolute;
     width: 100%;
@@ -765,7 +762,6 @@ form[action="/search"] {
     transform: translateY(-50%);
     border-radius: 5px;
 }
-
 input[type="range"] {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -778,6 +774,7 @@ input[type="range"] {
     transform: translateY(-50%);
 }
 
+/* Style the slider thumb for Chrome and Safari */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -790,6 +787,17 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
 }
 
+/* Style the slider thumb for Firefox */
+input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
 .minvalue, .maxvalue {
     position: absolute;
     top: 100%;
@@ -798,3 +806,7 @@ input[type="range"]::-webkit-slider-thumb {
     color: #666;
     margin-top: 10px;
 }
+
+
+
+
