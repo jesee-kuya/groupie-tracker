@@ -1,46 +1,63 @@
-const creationDateMin = document.getElementById("creationDateMin");
-const creationDateMax = document.getElementById("creationDateMax");
-const minDisplay = document.getElementById("creationDateMinValue");
-const maxDisplay = document.getElementById("creationDateMaxValue");
-const albumDateMin = document.getElementById("albumDateMin");
-const albumDateMax = document.getElementById("albumDateMax");
-const albuminDisplay = document.getElementById("albumDateMinValue");
-const albummaxDisplay = document.getElementById("albumDateMaxValue");
-const items = document.querySelectorAll(".item");
-
-// Update displayed values
-function updateDisplay() {
-    minDisplay.textContent = creationDateMin.value;
-    maxDisplay.textContent = creationDateMax.value;
-    albuminDisplay.textContent = albumDateMin.value;
-    albummaxDisplay.textContent = albumDateMax.value;
-    filterItems();
-}
-
-// Filter items based on selected range
-function filterItems() {
-    const minYear = parseInt(creationDateMin.value);
-    const maxYear = parseInt(creationDateMax.value);
-    const albminYear = parseInt(albumDateMin.value);
-    const albmaxYear = parseInt(albumDateMax.value);
-
-    items.forEach(item => {
-        const itemYear = parseInt(item.getAttribute("data-year"));
+document.addEventListener('DOMContentLoaded', function() {
+    function setupRangeSlider(container) {
+        const rangeTrack = container.querySelector('.range_track');
+        const minInput = container.querySelector('input.min');
+        const maxInput = container.querySelector('input.max');
+        const minValue = container.querySelector('.minvalue');
+        const maxValue = container.querySelector('.maxvalue');
         
-        // Check if itemYear is within both ranges
-        if (itemYear >= minYear && itemYear <= maxYear && itemYear >= albminYear && itemYear <= albmaxYear) {
-            item.style.display = "block";
-        } else {
-            item.style.display = "none";
+        // Calculate percentage for positioning
+        function getPercent(value) {
+            const min = parseInt(minInput.min);
+            const max = parseInt(minInput.max);
+            return ((value - min) / (max - min)) * 100;
         }
-    });
-}
+        
+        function updateRangeTrack() {
+            const minPercent = getPercent(minInput.value);
+            const maxPercent = getPercent(maxInput.value);
+            
+            rangeTrack.style.background = `linear-gradient(
+                to right,
+                #e3e3e3 ${minPercent}%,
+                #4a90e2 ${minPercent}%,
+                #4a90e2 ${maxPercent}%,
+                #e3e3e3 ${maxPercent}%
+            )`;
+            
+            minValue.textContent = minInput.value;
+            maxValue.textContent = maxInput.value;
+            
+            // Position value labels
+            minValue.style.left = `${minPercent}%`;
+            maxValue.style.left = `${maxPercent}%`;
+        }
+        
+        minInput.addEventListener('input', function() {
+            const minVal = parseInt(minInput.value);
+            const maxVal = parseInt(maxInput.value);
+            
+            if (minVal > maxVal) {
+                minInput.value = maxVal;
+            }
+            updateRangeTrack();
+        });
+        
+        maxInput.addEventListener('input', function() {
+            const minVal = parseInt(minInput.value);
+            const maxVal = parseInt(maxInput.value);
+            
+            if (maxVal < minVal) {
+                maxInput.value = minVal;
+            }
+            updateRangeTrack();
+        });
+        
+        // Initial update
+        updateRangeTrack();
+    }
 
-// Event listeners for both sliders
-creationDateMin.addEventListener("input", updateDisplay);
-creationDateMax.addEventListener("input", updateDisplay);
-albumDateMin.addEventListener("input", updateDisplay);
-albumDateMax.addEventListener("input", updateDisplay);
-
-// Initial filter on load
-filterItems();
+    // Setup both range sliders
+    const sliders = document.querySelectorAll('.double_range_slider');
+    sliders.forEach(setupRangeSlider);
+});
