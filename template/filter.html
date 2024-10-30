@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/filter.css">
+    <link rel="stylesheet" href="/static/range-slider.css">
 </head>
 <body>
     <section class="hero">
@@ -15,36 +16,30 @@
         <form id="filterForm" action="/result" method="post">
             <div class="filter-section">
                 <h2>Creation Date Range</h2>
-                <div class="dual-slider-container">
-                    <div class="slider-wrap">
-                        <label>From:</label>
-                        <input type="range" id="creationDateMin" name="creationDateFrom" 
-                               min="1900" max="2024" value="1900" class="range-min">
-                        <div class="slider-value">Year: <span id="creationDateMinValue">1900</span></div>
-                    </div>
-                    <div class="slider-wrap">
-                        <label>To:</label>
-                        <input type="range" id="creationDateMax" name="creationDateTo" 
-                               min="1900" max="2024" value="2024" class="range-max">
-                        <div class="slider-value">Year: <span id="creationDateMaxValue">2024</span></div>
+                <div class="double_range_slider_box">
+                    <div class="double_range_slider">
+                        <span class="range_track" id="creation_range_track"></span>
+                        <input type="range" class="min" name="creationDateFrom" 
+                               min="1900" max="2024" value="1900" step="1" />
+                        <input type="range" class="max" name="creationDateTo" 
+                               min="1900" max="2024" value="2024" step="1" />
+                        <div class="minvalue">1900</div>
+                        <div class="maxvalue">2024</div>
                     </div>
                 </div>
             </div>
             
             <div class="filter-section">
                 <h2>First Album Date Range</h2>
-                <div class="dual-slider-container">
-                    <div class="slider-wrap">
-                        <label>From:</label>
-                        <input type="range" id="albumDateMin" name="albumDateFrom" 
-                               min="1900" max="2024" value="1900" class="range-min">
-                        <div class="slider-value">Year: <span id="albumDateMinValue">1900</span></div>
-                    </div>
-                    <div class="slider-wrap">
-                        <label>To:</label>
-                        <input type="range" id="albumDateMax" name="albumDateTo" 
-                               min="1900" max="2024" value="2024" class="range-max">
-                        <div class="slider-value">Year: <span id="albumDateMaxValue">2024</span></div>
+                <div class="double_range_slider_box">
+                    <div class="double_range_slider">
+                        <span class="range_track" id="album_range_track"></span>
+                        <input type="range" class="min" name="albumDateFrom" 
+                               min="1900" max="2024" value="1900" step="1" />
+                        <input type="range" class="max" name="albumDateTo" 
+                               min="1900" max="2024" value="2024" step="1" />
+                        <div class="minvalue">1900</div>
+                        <div class="maxvalue">2024</div>
                     </div>
                 </div>
             </div>
@@ -110,7 +105,7 @@
             </div>
         </form>
     </div>
-    <script src="./static/filter.js"></script>
+    <script src="/static/filter.js"></script>
 </body>
 </html>
 {{ end }}

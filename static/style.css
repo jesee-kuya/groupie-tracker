@@ -743,184 +743,70 @@ form[action="/search"] {
     }
 }
 
-
-/* Dual slider styling */
-/* Dual slider container for same-line layout */
-.dual-slider-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
+/* Range Slider */
+.double_range_slider_box {
+    padding: 20px;
+    margin-bottom: 20px;
 }
-
-.slider-wrap {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ff9900; /* Changed border to orange */
-}
-
-.slider-wrap label {
-    display: block;
-    margin-bottom: 10px;
-    color: #ff6600; /* Changed label color to orange */
-    font-weight: bold;
-}
-
-input[type="range"] {
+.double_range_slider {
+    position: relative;
     width: 100%;
-    height: 4px;
-    background: #fff5e6; /* Light orange background for slider */
-    border-radius: 2px;
-    outline: none;
+    height: 50px;
+}
+.range_track {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: #e3e3e3;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    background: transparent;
+    pointer-events: none;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
+/* Style the slider thumb for Chrome and Safari */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #ff6600; /* Changed thumb color to orange */
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #ff9900; /* Orange border */
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #ff6600; /* Orange thumb color for Firefox */
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #ff9900;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-.slider-value {
-    text-align: center;
-    margin-top: 10px;
-    color: #ff6600; /* Changed text color to orange */
-    font-size: 14px;
-    font-weight: bold;
-}
-
-/* Checkbox styling */
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 10px 0;
-}
-
-.checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
-    border: 1px solid #ff9900; /* Orange border */
-}
-
-.checkbox-item input[type="checkbox"] {
     width: 18px;
     height: 18px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    border: 2px solid white;
+    pointer-events: auto;
     cursor: pointer;
-    accent-color: #ff6600; /* Orange checkbox color */
 }
 
-.checkbox-item label {
+/* Style the slider thumb for Firefox */
+input[type="range"]::-moz-range-thumb {
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    border: 2px solid white;
     cursor: pointer;
+}
+
+.minvalue, .maxvalue {
+    position: absolute;
+    top: 100%;
+    transform: translateX(-50%);
     font-size: 14px;
-    color: #333;
+    color: #666;
+    margin-top: 10px;
 }
 
-.checkbox-item:hover {
-    background: #fff5e6; /* Light orange on hover */
-}
 
-/* Button styling */
-.button-group {
-    margin-top: 30px;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
 
-.button-group button,
-.button-group a {
-    padding: 12px 24px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-weight: bold;
-}
 
-.apply-filter {
-    background: #ff6600; /* Changed to orange */
-    color: white;
-    border: 2px solid #ff6600;
-}
-
-.apply-filter:hover {
-    background: #cc5200; /* Darker orange on hover */
-    border-color: #cc5200;
-}
-
-.reset-filter {
-    background: #333;
-    color: #ff9900; /* Orange text */
-    border: 2px solid #333;
-}
-
-.reset-filter:hover {
-    background: #666;
-    border-color: #666;
-}
-
-.return-home {
-    background: #ff9900; /* Light orange background */
-    color: #333;
-    text-decoration: none;
-    border: 2px solid #ff9900;
-}
-
-.return-home:hover {
-    background: #ffb84d; /* Lighter orange on hover */
-    border-color: #ffb84d;
-}
-
-/* Location input styling */
-.filter-group input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #ff9900; /* Orange border */
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
-}
-
-.filter-group input[type="text"]:focus {
-    outline: none;
-    border-color: #ff6600; /* Darker orange on focus */
-    box-shadow: 0 0 5px rgba(255, 102, 0, 0.2); /* Orange shadow */
-}
-
-/* Hero section */
-.hero {
-    background: #333;
-    color: #ff9900; /* Changed hero text to orange */
-    padding: 20px 0;
-    margin-bottom: 30px;
-}
-
-.hero-content h1 {
-    color: #ff9900; /* Orange heading */
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
