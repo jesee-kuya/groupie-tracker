@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -12,7 +11,6 @@ import (
 func Results(w http.ResponseWriter, r *http.Request) {
 	var result []groupie.Artist
 	var data Info
-	var members []int
 	if err := r.ParseForm(); err != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
@@ -33,10 +31,11 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	memb9 := r.Form.Get("members9")
 	memb10Plus := r.Form.Get("members10plus")
 
-	members = CheckMembers(memb1, memb2, memb3, memb4,memb5, memb6, memb7, memb8, memb9, memb10Plus)
+	members := CheckMembers(memb1, memb2, memb3, memb4, memb5, memb6, memb7, memb8, memb9, memb10Plus)
 
 	result = CreationDate(creationFrm, creationTo)
 	result = AlbumYear(result, albumFrm, albumTo)
+	result = Members(result, members)
 	result = SearchLocation(result, location)
 
 	data.Title = "result"
@@ -74,13 +73,16 @@ func AlbumYear(res []groupie.Artist, AlbumFrm, AlbumTo string) (result []groupie
 	return
 }
 
-func Members(res []groupie.Artist, minMembers, maxMembers int) (result []groupie.Artist) {
+func Members(res []groupie.Artist, members []int) (result []groupie.Artist) {
 	if res == nil {
 		res = Artiste
 	}
 	for _, artist := range res {
-		if len(artist.Members) <= minMembers && len(artist.Members) >= maxMembers {
-			result = append(result, artist)
+		for _, num := range members {
+			if len(artist.Members) == num {
+				result = append(result, artist)
+				break
+			}
 		}
 	}
 	if result == nil {
@@ -115,8 +117,8 @@ func SearchLocation(res []groupie.Artist, location string) (result []groupie.Art
 	return
 }
 
-func CheckMembers ( str ...string) (members []int) {
-	for _ , v := range str {
+func CheckMembers(str ...string) (members []int) {
+	for _, v := range str {
 		if v != "" {
 			n, err := strconv.Atoi(v)
 			if err == nil {
