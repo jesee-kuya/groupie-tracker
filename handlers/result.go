@@ -17,8 +17,8 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	}
 	creationFrm, _ := strconv.Atoi(r.Form.Get("creationDateFrom"))
 	creationTo, _ := strconv.Atoi(r.Form.Get("creationDateTo"))
-	albumFrm := r.Form.Get("albumDateFrom")
-	albumTo := r.Form.Get("albumDateTo")
+	albumFrm, _ := strconv.Atoi(r.Form.Get("albumDateFrom"))
+	albumTo, _ := strconv.Atoi(r.Form.Get("albumDateTo"))
 	location := r.Form.Get("location")
 	memb1 := r.Form.Get("members1")
 	memb2 := r.Form.Get("members2")
@@ -58,24 +58,22 @@ func CreationDate(creationFrm, creationTo int) (result []groupie.Artist) {
 	return
 }
 
-func AlbumYear(res []groupie.Artist, AlbumFrm, AlbumTo string) (result []groupie.Artist) {
+func AlbumYear(res []groupie.Artist, AlbumFrm, AlbumTo int) (result []groupie.Artist) {
 	if res == nil {
-		res = Artiste
+		return
 	}
 	for _, artist := range res {
-		if artist.FirstAlbum >= AlbumFrm && artist.FirstAlbum <= AlbumTo {
+		num, _ := strconv.Atoi(artist.FirstAlbum[len(artist.FirstAlbum)-4:])
+		if num >= AlbumFrm && num <= AlbumTo {
 			result = append(result, artist)
 		}
-	}
-	if result == nil {
-		result = res
 	}
 	return
 }
 
 func Members(res []groupie.Artist, members []int) (result []groupie.Artist) {
 	if res == nil {
-		res = Artiste
+		return
 	}
 	for _, artist := range res {
 		for _, num := range members {
@@ -85,15 +83,12 @@ func Members(res []groupie.Artist, members []int) (result []groupie.Artist) {
 			}
 		}
 	}
-	if result == nil {
-		result = res
-	}
 	return
 }
 
 func SearchLocation(res []groupie.Artist, location string) (result []groupie.Artist) {
 	if res == nil {
-		res = Artiste
+		return
 	}
 	if location == "" {
 		return res
@@ -110,9 +105,6 @@ func SearchLocation(res []groupie.Artist, location string) (result []groupie.Art
 				break
 			}
 		}
-	}
-	if result == nil {
-		result = res
 	}
 	return
 }
