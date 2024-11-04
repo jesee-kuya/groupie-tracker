@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -11,26 +12,31 @@ import (
 func Results(w http.ResponseWriter, r *http.Request) {
 	var result []groupie.Artist
 	var data Info
+	var members []int
 	if err := r.ParseForm(); err != nil {
 		ErrorPage(w, r, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
-	creationFrm, err := strconv.Atoi(r.Form.Get("creationDateFrom"))
-	creationTo, err1 := strconv.Atoi(r.Form.Get("creationDateTo"))
+	creationFrm, _ := strconv.Atoi(r.Form.Get("creationDateFrom"))
+	creationTo, _ := strconv.Atoi(r.Form.Get("creationDateTo"))
 	albumFrm := r.Form.Get("albumDateFrom")
 	albumTo := r.Form.Get("albumDateTo")
-	minMembers, err2 := strconv.Atoi(r.Form.Get("membersMin"))
-	maxMembers, err3 := strconv.Atoi(r.Form.Get("membersMax"))
 	location := r.Form.Get("location")
+	memb1 := r.Form.Get("members1")
+	memb2 := r.Form.Get("members2")
+	memb3 := r.Form.Get("members3")
+	memb4 := r.Form.Get("members4")
+	memb5 := r.Form.Get("members5")
+	memb6 := r.Form.Get("members6")
+	memb7 := r.Form.Get("members7")
+	memb8 := r.Form.Get("members8")
+	memb9 := r.Form.Get("members9")
+	memb10Plus := r.Form.Get("members10plus")
 
-	if err != nil || err1 != nil || err2 != nil || err3 != nil {
-		ErrorPage(w, r, http.StatusBadRequest, "Bad request")
-		return
-	}
+	members = CheckMembers(memb1, memb2, memb3, memb4,memb5, memb6, memb7, memb8, memb9, memb10Plus)
 
 	result = CreationDate(creationFrm, creationTo)
 	result = AlbumYear(result, albumFrm, albumTo)
-	result = Members(result, minMembers, maxMembers)
 	result = SearchLocation(result, location)
 
 	data.Title = "result"
@@ -105,6 +111,18 @@ func SearchLocation(res []groupie.Artist, location string) (result []groupie.Art
 	}
 	if result == nil {
 		result = res
+	}
+	return
+}
+
+func CheckMembers ( str ...string) (members []int) {
+	for _ , v := range str {
+		if v != "" {
+			n, err := strconv.Atoi(v)
+			if err == nil {
+				members = append(members, n)
+			}
+		}
 	}
 	return
 }
