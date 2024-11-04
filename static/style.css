@@ -333,17 +333,21 @@ main {
     padding: 0.4em 0.8em; /* Slightly reduce padding */
     text-decoration: none;
     color: #fff;
-    background-color: #007bff;
+    background-color: #dc3545;
     border-radius: 4px;
     font-weight: bold;
-    font-size: 0.85em; /* Slightly reduce font size */
+    font-size: 1 em; /* Slightly reduce font size */
     transition: background-color 0.3s ease, transform 0.3s ease;
     margin: 0.2em 0; /* Add a small vertical margin */
+    justify-content: center;
 }
 
 /* Hover effect for artist links */
 .artist-link:hover {
     transform: translateY(-2px);
+    background-color: #28a745;; 
+    color: #fff; 
+    font-size: 1em;
 }
 
 /* Specific colors for each link type */
@@ -394,7 +398,7 @@ main {
 }
 
 .concert-details th {
-    background-color: rgba(255, 65, 54, 0.7);
+    background-color: rgb(0.0, 0.0, 0.0, 0.8);
     /* Reddish background */
     color: white;
     font-weight: bold;
@@ -412,6 +416,31 @@ main {
     /* Stronger yellow on hover */
     transition: background-color 0.3s ease;
 }
+
+.relations-info {
+    background: linear-gradient(135deg, #FFF700, #FF4136);
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2em auto; /* Center and add some spacing */
+    max-width: 800px; /* Set a max width for uniformity */
+}
+
+.relations-info h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #1A1A1A;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5em;
+}
+
+.relations-info img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
 
 @media (max-width: 768px) {
     .concert-info h2 {
@@ -743,6 +772,11 @@ form[action="/search"] {
     }
 }
 
+.filter-button-container {
+    text-align: center; 
+    padding: 20px;
+}
+
 /* Range Slider */
 .double_range_slider_box {
     padding: 20px;
@@ -775,38 +809,95 @@ input[type="range"] {
 }
 
 /* Style the slider thumb for Chrome and Safari */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background-color: #4a90e2;
-    border-radius: 50%;
-    border: 2px solid white;
-    pointer-events: auto;
-    cursor: pointer;
+input[type="range"] {
+    -webkit-appearance: none; 
+    -moz-appearance: none;    
+    appearance: none;         
+    width: 100%;              
+    outline: none;            
+    position: absolute;       
+    margin: auto;             
+    top: 50%;                 
+    transform: translateY(-50%); 
+    background-color: transparent; 
+    pointer-events: none;     
 }
 
-/* Style the slider thumb for Firefox */
+.container-range {
+    position: relative;       
+    width: 100%;             
+    height: 50px;            
+}
+
+.slider-track {
+    width: 100%;              
+    height: 5px;              
+    position: absolute;       
+    margin: auto;             
+    top: 50%;                 
+    transform: translateY(-50%); 
+    border-radius: 5px;      
+    background-color: #e3e3e3; 
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none; 
+    height: 5px;              
+}
+
+input[type="range"]::-moz-range-track {
+    -moz-appearance: none;    
+    height: 5px;              
+}
+
+input[type="range"]::-ms-track {
+    appearance: none;         
+    height: 5px;              
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    appearance: none;         
+    height: 1.7em;            
+    width: 1.7em;             
+    background-color: #4a90e2; 
+    cursor: pointer;          
+    margin-top: -8px;        
+    pointer-events: auto;     
+    border-radius: 50%;      
+    border: 2px solid white;  
+}
+
 input[type="range"]::-moz-range-thumb {
-    -moz-appearance: none;
-    width: 18px;
-    height: 18px;
-    background-color: #4a90e2;
-    border-radius: 50%;
-    border: 2px solid white;
-    cursor: pointer;
+    -moz-appearance: none;    
+    height: 1.7em;            
+    width: 1.7em;             
+    cursor: pointer;          
+    border-radius: 50%;      
+    background-color: #4a90e2; 
+    pointer-events: auto;     
+}
+
+input[type="range"]::-ms-thumb {
+    appearance: none;         
+    height: 1.7em;            
+    width: 1.7em;             
+    cursor: pointer;          
+    border-radius: 50%;      
+    background-color: #4a90e2; 
+    pointer-events: auto;     
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    background-color: #ffffff; 
+    border: 3px solid #272b33; 
 }
 
 .minvalue, .maxvalue {
-    position: absolute;
-    top: 100%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    color: #666;
-    margin-top: 10px;
+    position: absolute;       
+    top: 100%;                
+    transform: translateX(-50%); 
+    font-size: 14px;         
+    color: #666;             
+    margin-top: 10px;        
 }
-
-
-
-
