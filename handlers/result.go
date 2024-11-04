@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -42,11 +41,7 @@ func Results(w http.ResponseWriter, r *http.Request) {
 	result = CreationDate(creationFrm, creationTo)
 	result = AlbumYear(result, albumFrm, albumTo)
 	result = Members(result, members)
-	fmt.Println("Members")
-	fmt.Println(result)
-	fmt.Println("Out of members")
 	result = SearchLocation(result, location)
-	fmt.Println(result)
 
 	data.Title = "result"
 	data.Data = result
