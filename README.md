@@ -38,7 +38,7 @@ git clone https://learn.zone01kisumu.ke/git/josotieno/groupie-tracker-filters.gi
 ```
 Go to the project directory
 ```bash
-cd groupie-tracker-search-bar
+cd groupie-tracker-filters
 ```
 When on the working directory run the command below on your terminal to start the server;
 ```bash
