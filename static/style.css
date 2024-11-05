@@ -325,6 +325,7 @@ main {
     margin-top: 0.5em;
     margin-bottom: 0.5em; /* Add some space at the bottom */
     padding: 0 0.5em; /* Add padding on the sides */
+    flex-wrap: wrap;
 }
 
 /* Styling for artist links */
