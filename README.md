@@ -1,46 +1,40 @@
-# Groupie Tracker - Search Bar
+# Groupie Tracker Filters
 
-Groupie Tracker Search is a web application designed to empower music enthusiasts by providing a user-friendly platform to explore and track their favorite bands and artists.This search functionality handles multiple search cases, supports real-time suggestions as the user types, and ensures case-insensitive searches. The search results include artist/band names, members, locations, first album release dates, and creation dates.
+Groupie Tracker Filters is a project that allows users to filter and refine the list of artists or bands displayed on the platform. By providing multiple filtering options, users can find artists and bands that meet specific criteria, enhancing the browsing experience and personalizing search results.
 
 ## Features
 
-**1. Search Cases**
+The project includes four main filters:
 
-The program supports the following search cases:
+- Filter by Creation Date - Find artists or bands based on the year they were formed.
 
-- Artist/Band Name: Allows users to search for artists or bands by name.
-    Members: Users can search for individual members of a band.
-- Locations: Users can search for locations related to an artist or band's performances.
-- First Album Release Date: Users can search by the release date of an artist's or band's first album.
-- Creation Date: Users can search by the date the artist or band was formed.
+- Filter by First Album Date - Search for artists or bands by the release date of their debut album.
 
-**2. Case-Insensitive Search**
+- Filter by Number of Members - Display artists or bands with a specified range of members.
 
-- The search input is case-insensitive, meaning it doesn't matter if the user types in uppercase or lowercase letters. The program normalizes the input and the data before performing the search.
+- Filter by Locations of Concerts - Discover artists or bands by selecting concert locations.
 
-**3. Typing Suggestions**
+## Filter Types
 
-As users type in the search bar, they receive dynamic suggestions based on their input. The suggestions appear in real-time and display:
+To offer a flexible filtering experience, the project incorporates two types of filters:
 
-- Artist/Band Name
-- Member Name
-- Location
-- First Album Release Date
-- Creation Date
+- Range Filter: Filters results between two specified values (e.g., creation year from 1970 to 1980).
 
-The suggestion list will also specify the type of result (e.g., "Phil Collins - artist/band" or "Freddie Mercury - member").
-How It Works
+- Checkbox Filter: Filters results based on one or multiple selections (e.g., selecting specific concert locations).
 
-- Search Input: Users begin typing in the search bar, which triggers a fetch request to retrieve possible matches based on the input.
-- Typing Suggestions: As the user types, suggestions are displayed based on the input. These suggestions are fetched dynamically and appear beneath the search bar.
-- Selecting a Suggestion: When a suggestion is clicked or the user presses Enter, the user is redirected to a page displaying the relevant artist/band's detailed information.
-- Search Results: If the input matches any artist, band, or related information, the program displays the results in a structured format. If no matches are found, an error page will inform the user that no results are available.
+## Usage
+
+- Select Filters - Choose the criteria you'd like to apply from the filter options.
+
+- Apply Filters - Refine the displayed artists and bands based on the selected filters.
+
+- Reset Filters - Clear any applied filters to return to the default display.
 
 ## Project Setup
 
 To access the web page clone the repository using the link below;
 ```bash
-git clone https://learn.zone01kisumu.ke/git/weakinyi/groupie-tracker-search-bar.git
+git clone https://learn.zone01kisumu.ke/git/josotieno/groupie-tracker-filters.git
 ```
 Go to the project directory
 ```bash
@@ -56,6 +50,7 @@ localhost:8080
 ```
 
 ## Contribution Guidelines (if applicable)
+
 - Fork the Repository: If you intend to contribute changes, fork the repository from github to create your own copy.
 
 - Branching Strategy: Create a new branch for your specific development work to avoid conflicts with the main branch.
