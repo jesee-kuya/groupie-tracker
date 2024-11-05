@@ -20,7 +20,7 @@ To offer a flexible filtering experience, the project incorporates two types of 
 
 - Range Filter: Filters results between two specified values (e.g., creation year from 1970 to 1980).
 
-- Checkbox Filter: Filters results based on one or multiple selections (e.g., selecting specific concert locations).
+- Checkbox Filter: Filters results based on one or the number of members(e.g., a band with two members checkbox 2).
 
 ## Usage
 
