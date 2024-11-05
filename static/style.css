@@ -194,8 +194,13 @@ main {
 
 /* Centered section styling */
 .artist-info {
-    display: inline-block;
-    text-align: center;
+    background: linear-gradient(135deg, #FFF700, #FF4136);
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2em auto;
+    max-width: 600px;
+    
 }
 
 .artist-info h2 {
@@ -207,15 +212,41 @@ main {
 }
 
 /* Styling for lists within artist-info */
-.artist-info ul {
+.artist-info ul.no-bullets {
     list-style-type: none;
     padding: 0;
-    margin: 0 auto;
-    max-width: 800px;
-}
+  }
+  
+  .artist-info .detail-name {
+    text-align: center;
+    font-size: 1.25em;
+    margin: 0.75em 0;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .artist-info .detail-name:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
 .artist-info li {
     text-align: center;
+    font-size: 1.25em;
+    margin: 0.75em 0;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.artis-info li:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Styling for images */
