@@ -1,46 +1,68 @@
-const creationDateMin = document.getElementById("creationDateMin");
-const creationDateMax = document.getElementById("creationDateMax");
-const minDisplay = document.getElementById("creationDateMinValue");
-const maxDisplay = document.getElementById("creationDateMaxValue");
-const albumDateMin = document.getElementById("albumDateMin");
-const albumDateMax = document.getElementById("albumDateMax");
-const albuminDisplay = document.getElementById("albumDateMinValue");
-const albummaxDisplay = document.getElementById("albumDateMaxValue");
-const items = document.querySelectorAll(".item");
+document.addEventListener('DOMContentLoaded', function() {
+    function setupRangeSlider(container) {
+        const rangeTrack = container.querySelector('.range_track');
+        const minInput = container.querySelector('input.min');
+        const maxInput = container.querySelector('input.max');
+        const minValue = container.querySelector('.minvalue');
+        const maxValue = container.querySelector('.maxvalue');
 
-// Update displayed values
-function updateDisplay() {
-    minDisplay.textContent = creationDateMin.value;
-    maxDisplay.textContent = creationDateMax.value;
-    albuminDisplay.textContent = albumDateMin.value;
-    albummaxDisplay.textContent = albumDateMax.value;
-    filterItems();
-}
-
-// Filter items based on selected range
-function filterItems() {
-    const minYear = parseInt(creationDateMin.value);
-    const maxYear = parseInt(creationDateMax.value);
-    const albminYear = parseInt(albumDateMin.value);
-    const albmaxYear = parseInt(albumDateMax.value);
-
-    items.forEach(item => {
-        const itemYear = parseInt(item.getAttribute("data-year"));
-        
-        // Check if itemYear is within both ranges
-        if (itemYear >= minYear && itemYear <= maxYear && itemYear >= albminYear && itemYear <= albmaxYear) {
-            item.style.display = "block";
-        } else {
-            item.style.display = "none";
+        // Calculate percentage for positioning
+        function getPercent(value) {
+            const min = parseInt(minInput.min);
+            const max = parseInt(minInput.max);
+            return ((value - min) / (max - min)) * 100;
         }
-    });
-}
 
-// Event listeners for both sliders
-creationDateMin.addEventListener("input", updateDisplay);
-creationDateMax.addEventListener("input", updateDisplay);
-albumDateMin.addEventListener("input", updateDisplay);
-albumDateMax.addEventListener("input", updateDisplay);
+        function updateRangeTrack() {
+            const minPercent = getPercent(minInput.value);
+            const maxPercent = getPercent(maxInput.value);
 
-// Initial filter on load
-filterItems();
+            // Using colors that match your site's theme
+            rangeTrack.style.background = `linear-gradient(
+                to right,
+                #e3e3e3 ${minPercent}%,
+                #FF4136 ${minPercent}%,
+                #FFF700 ${(minPercent + maxPercent) / 2}%,
+                #FF4136 ${maxPercent}%,
+                #e3e3e3 ${maxPercent}%
+            )`;
+
+            // Update value displays
+            minValue.textContent = minInput.value;
+            maxValue.textContent = maxInput.value;
+
+            // Position value labels
+            minValue.style.left = `${minPercent}%`;
+            maxValue.style.left = `${maxPercent}%`;
+
+            // Style the range thumbs to match the gradient
+            minInput.style.setProperty('--thumb-color', '#FF4136');
+            maxInput.style.setProperty('--thumb-color', '#FF4136');
+        }
+
+        minInput.addEventListener('input', function() {
+            const minVal = parseInt(minInput.value);
+            const maxVal = parseInt(maxInput.value);
+            if (minVal > maxVal) {
+                minInput.value = maxVal;
+            }
+            updateRangeTrack();
+        });
+
+        maxInput.addEventListener('input', function() {
+            const minVal = parseInt(minInput.value);
+            const maxVal = parseInt(maxInput.value);
+            if (maxVal < minVal) {
+                maxInput.value = minVal;
+            }
+            updateRangeTrack();
+        });
+
+        // Initial update
+        updateRangeTrack();
+    }
+
+    // Setup both range sliders
+    const sliders = document.querySelectorAll('.double_range_slider');
+    sliders.forEach(setupRangeSlider);
+});
