@@ -82,9 +82,14 @@ func Members(res []groupie.Artist, members []int) (result []groupie.Artist) {
 	}
 	for _, artist := range res {
 		for _, num := range members {
+			if num == 10 {
+				if len(artist.Members) >= 10 {
+					result = append(result, artist)
+				}
+				continue
+			}
 			if len(artist.Members) == num {
 				result = append(result, artist)
-				break
 			}
 		}
 	}
