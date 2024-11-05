@@ -7,20 +7,20 @@
     </header>
     <main>
         <section class="artist-info">
-            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}"
-                onerror="this.onerror=null;this.src='/static/images/favicon32.png';">
-            <p>Year Started: {{.Artist.CreationDate}}</p>
-            <p>First Album: {{.Artist.FirstAlbum}}</p>
-
+            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/favicon32.png';">
+            <ul class="no-bullets">
+              <li class="detail-name">Year Started: {{.Artist.CreationDate}}</li>
+              <li class="detail-name">First Album: {{.Artist.FirstAlbum}}</li>
+            </ul>
             <h2>Members:</h2>
-            <ul>
-                {{if .Artist.Members}}
-                {{range .Artist.Members}}
-                <li>{{.}}</li>
-                {{end}}
-                {{else}}
-                <li>No members available.</li>
-                {{end}}
+            <ul class="no-bullets">
+              {{if .Artist.Members}}
+              {{range .Artist.Members}}
+              <li class="detail-name">{{.}}</li>
+              {{end}}
+              {{else}}
+              <li class="detail-name">No members available.</li>
+              {{end}}
             </ul>
 
             <h2>Concert Locations and Dates:</h2>
